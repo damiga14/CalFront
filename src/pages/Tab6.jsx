@@ -1,0 +1,42 @@
+import React, { useEffect, useState } from 'react';
+import { IonContent, IonHeader, IonPage, IonText, IonLabel, IonTitle, IonImg, IonToolbar } from '@ionic/react';
+import './Tab6.css';
+import logoAteret from '../assets/logo.png'
+import logoActive from "../assets/LogoActiveAnimated.gif";
+
+function Tab6() {
+  return (
+    <IonPage>
+      <IonToolbar color='tertiary' className='ion-text-center'>
+        <IonLabel className='titulo'>Calendario Ateret Yosef</IonLabel>
+      </IonToolbar>
+
+      <IonContent fullscreen>
+
+        <br />
+
+        <div className='arriba'>
+          <img src={logoAteret} alt="" width={'50%'} />
+        </div>
+
+        <br />
+
+        <div className='ion-padding ion-text-justify' style={{ "fontWeight": "bold" }}>
+          <IonText>El cálculo de los horarios de este calendario están basados de acuerdo a cómo se aplican en la mayoría de los calendarios reconocidos en el mundo.</IonText>
+          <br />
+          <IonText>Esta app toma las coordenadas del lugar donde se encuentre para que el cálculo sea lo más exacto posible.</IonText>
+          <br />
+          <IonText>Cabe recalcar que por este motivo, puede haber una pequeña diferencia de acuerdo al calendario impreso.</IonText>
+
+          <br /><br />
+
+          <IonText>Para dudas o comentarios, puedes contactarnos a este correo <a href="mailto:activecode@gmail.com">activecode@gmail.com</a>.</IonText>
+          <br /><br />
+          <IonImg src={logoActive} alt={"Active Code"} style={{ 'width': "40%", "height": "auto", "margin": "auto" }} />
+        </div>
+      </IonContent>
+    </IonPage>
+  );
+};
+
+export default Tab6;

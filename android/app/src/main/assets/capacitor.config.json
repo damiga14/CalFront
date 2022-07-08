@@ -1,0 +1,6 @@
+{
+	"appId": "com.davidamiga.calateret",
+	"appName": "Calendario Ateret",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

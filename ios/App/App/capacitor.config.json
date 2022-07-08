@@ -1,0 +1,6 @@
+{
+	"appId": "com.davidamiga.calateret",
+	"appName": "Cal Ateret Yosef",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

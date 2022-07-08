@@ -1,0 +1,37 @@
+.titulo {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.horarios {
+  font-size: 16px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.big {
+  font-size: 20px;
+}
+
+.perasha,
+.extra,
+.omer {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+.small {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+}
+
+.smaller {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 10px;
+}
+
+.horariosPesaj {
+  border: 1px;
+  border-style: solid;
+  border-color: red;
+  padding: 10px;
+}
