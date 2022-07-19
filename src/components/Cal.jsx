@@ -18,9 +18,12 @@ import { Geolocation } from '@ionic-native/geolocation'
 import { createGesture, Gesture } from '@ionic/react';
 import { Network } from '@capacitor/network';
 import { getTimezone } from 'countries-and-timezones'
+import { Device } from '@capacitor/device';
 
 let lat = '19.4349023'
 let long = '-99.2069489'
+
+let localVersion = 1
 
 let yomTob = []
 yomTob['Pesaj 1'] = true
@@ -137,9 +140,10 @@ function Cal() {
     // let [long, setLong] = useState();
     let [showPopover, setShowPopover] = useState(false);
     let [showPopover2, setShowPopover2] = useState(false);
+    let [showPopover3, setShowPopover3] = useState(false);
     let [alert, setAlert] = useState('')
-    let [locationid, setlocationid] = useState('abrir dia')
-    let [veranoCode, setVeranoCode] = useState('abrir dia')
+    let [url, setUrl] = useState('')
+    // let [veranoCode, setVeranoCode] = useState('abrir dia')
 
     async function getLocation() {
         let position = await Geolocation.getCurrentPosition()
@@ -170,13 +174,11 @@ function Cal() {
 
     function myZmanimCallGPS_callback(response, date) {
         var day = JSON.parse(response);
-        setlocationid(day.LocationID)
         myZmanimCall(myZmanimCall_callback, date, day.LocationID)
     }
 
     function myZmanimCallGPS_callback2(response, date) {
         var day = JSON.parse(response);
-        setlocationid(day.LocationID)
         myZmanimCall(myZmanimCall_callback2, date, day.LocationID)
     }
 
@@ -674,10 +676,28 @@ function Cal() {
             })
             .catch((err) => { console.log(err) })
 
+        axios.get('https://calateret.herokuapp.com/api/v1/version')
+            .then((response) => {
+                if (Number(response.data.data[0].VersionNumber) > localVersion) {
+                    setShowPopover3(true)
+                }
+            })
+            .catch((err) => { console.log(err) })
+
         creaCal()
         getLocation()
 
         logCurrentNetworkStatus()
+
+        const logDeviceInfo = async () => {
+            const info = await Device.getInfo();
+
+            info.operatingSystem == 'ios'
+                ? setUrl('https://apps.apple.com/mx/app/tebila-app/id1572888530')
+                : setUrl('https://play.google.com/store/apps/details?id=com.davidamiga.tebilaapp')
+        };
+
+        logDeviceInfo()
     }, [])
 
     useLayoutEffect(() => {
@@ -693,8 +713,8 @@ function Cal() {
             // 1 = "Daylight Saving Time"
             // 2 = "Zmanim returned are in Standard Time. User should add one hour for Daylight Saving Time when applicable."
             // 3 = "We don't know if DST is observed here and now."
-            
-            setVeranoCode(APIresponse.Time.DaylightTime)
+
+            // setVeranoCode(APIresponse.Time.DaylightTime)
 
             if (APIresponse.Time.DaylightTime == 2 || APIresponse.Time.DaylightTime == 3) {
                 // if (APIresponse.Time.DaylightTime != 0) {
@@ -896,6 +916,16 @@ function Cal() {
                         <IonButton expand='block' color='tertiary' onClick={() => {
                             setShowPopover2(false)
                         }}>Ok</IonButton>
+                    </IonPopover>
+
+                    <IonPopover isOpen={showPopover3} cssClass='my-custom-class' backdrop-dismiss='false'>
+                        <div className='ion-margin ion-text-center'>
+                            <IonText className='' color='danger'>No tienes la version mas actulizada de la app!</IonText>
+                            <br /><br />
+                            <IonText>Por favr actualiza antes de utilizarla.</IonText>
+                        </div>
+
+                        <IonButton expand='block' color='tertiary' onClick={() => { window.open(url) }}>Actualizar</IonButton>
                     </IonPopover>
 
                     <br /><br />

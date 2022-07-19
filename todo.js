@@ -1,15 +1,12 @@
 /*
 
-Comienza ayuno
-kipur - restó 10 min a shekia
-9 av - resto 5 min a shekia
 
-Kipur fin yon Tob y ayuno sale doble
-Otras opiniones solo una de 5 min memos, como fin Tom Tob
-
-Ravens tam de kipur con estilo del de shabat
+cotizacon con mensual
 
 splash con Leiluy nishmat
+
+actulizar url de app y play store
+
 
 
 

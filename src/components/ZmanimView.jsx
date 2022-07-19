@@ -180,6 +180,7 @@ function ZmanimView(props) {
     let [fastBegins, setFastBegins] = useState()
     let [fastEnds, setFastEnds] = useState()
     let [perasha2, setPerasha] = useState()
+    let [kipur, setKipur] = useState()
     let [extra, setExtra] = useState()
     let [extra2, setExtra2] = useState()
     let [verano, setVerano] = useState(false)
@@ -203,7 +204,6 @@ function ZmanimView(props) {
     let [SunsetLevel, setSunsetLevel] = useState()
     let [Night72fixLevel, setNight72fixLevel] = useState()
     let [Midnight, setMidnight] = useState()
-
 
     function getMonthName(num) {
         let name = ''
@@ -575,9 +575,13 @@ function ZmanimView(props) {
             setExtra()
             setExtra2()
             setPerasha()
+            setKipur()
 
             for (let i in props.a2.data.items) {
-                if (props.a2.data.items[i].category == 'havdalah' && props.a2.data.items[i].memo == 'Yom Kippur') {
+                if (props.a2.data.items[i].category == 'havdalah') {
+                    if (props.a2.data.items[i].memo == 'Yom Kippur') {
+                        setKipur(true)
+                    }
                     if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
                         setFastEnds(formatZman3(props.a2.data.items[i].date))
                     }
@@ -680,7 +684,15 @@ function ZmanimView(props) {
                 if (props.a2) {
                     for (let i2 in props.a2.data.items) {
                         if ((props.a2.data.items[i2].title == 'El ayuno comienza' && props.a.Time.IsErevTishaBav) || (props.a2.data.items[i2].memo == 'Erev Yom Kippur' && props.a.Time.IsErevYomKipper)) {
-                            setFastBegins(formatZman3(props.a2.data.items[i2].date))
+
+                            if (props.a.Time.IsErevTishaBav) {
+                                setFastBegins(formatZman3(dayjs(props.a2.data.items[i2].date).subtract(5, 'minute').$d.toString()))
+                            }
+                            else if (props.a2.data.items[i2].memo == 'Erev Yom Kippur' && props.a.Time.IsErevYomKipper) {
+                                setFastBegins(formatZman3(dayjs(props.a2.data.items[i2].date).subtract(10, 'minute').$d.toString()))
+                            }
+
+                            // setFastBegins(formatZman3(props.a2.data.items[i2].date))
                         }
                     }
                 }
@@ -1135,15 +1147,6 @@ function ZmanimView(props) {
                                         : null
                                 }
 
-                                <IonText className='big' color='danger'>Puesta del Sol - Shekia </IonText>
-                                <br />
-                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunsetLevel)}` : `${formatZman3(props.a.Zman.SunsetLevel)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(SunsetLevel)}</IonText>
-
-                                <br /><br />
-
                                 {
                                     fastBegins ?
                                         <>
@@ -1160,23 +1163,40 @@ function ZmanimView(props) {
 
                                 {
                                     fastEnds ?
-                                        <>
-                                            <IonText className='big' color='success'>Fin Ayuno 45 min</IonText>
+                                        !kipur ?
+                                            <>
+                                                <IonText className='big' color='success'>Fin Ayuno 45 min</IonText>
 
-                                            <br />
+                                                <br />
 
-                                            <IonText className='big'>{habdala}</IonText>
+                                                <IonText className='big'>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
 
-                                            <br />
+                                                <br />
 
-                                            {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
+                                                {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
                                             {props.a.Zman ? <> <IonText className='small'>&#128073; En caso de necesidad: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(30, 'minute').$d.toString())} </IonText></> : null} */}
 
-                                            <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br />
-                                            <IonText className='small'>&#128073; En caso de necesidad: {formatZmanMio(dayjs(SunsetLevel).add(30, 'minute').$d.toString())} </IonText>
+                                                <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br />
+                                                <IonText className='small'>&#128073; En caso de necesidad: {formatZmanMio(dayjs(SunsetLevel).add(30, 'minute').$d.toString())} </IonText>
 
-                                            <br /><br />
-                                        </>
+                                                <br /><br />
+                                            </>
+                                            :
+                                            <>
+                                                <IonText className='big' color='success'>Fin Ayuno 45 min</IonText>
+
+                                                <br />
+
+                                                <IonText className='big'>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
+
+                                                <br />
+
+                                                {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
+                                            {props.a.Zman ? <> <IonText className='small'>&#128073; En caso de necesidad: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(30, 'minute').$d.toString())} </IonText></> : null} */}
+
+                                                <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(40, 'minute').$d.toString())} </IonText> <br />
+                                                <br />
+                                            </>
                                         : null
                                 }
 
@@ -1228,9 +1248,18 @@ function ZmanimView(props) {
                                         : null
                                 }
 
+                                <IonText className='big' color='danger'>Puesta del Sol - Shekia </IonText>
+                                <br />
+                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunsetLevel)}` : `${formatZman3(props.a.Zman.SunsetLevel)}` : null}</IonText> */}
+                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
+                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
+                                <IonText>{formatZmanMio(SunsetLevel)}</IonText>
+
+                                <br /><br />
+
                                 {
                                     props.a.Time ?
-                                        props.a.Time.IsYomTov && !props.a.Time.TonightIsYomTov ?
+                                        props.a.Time.IsYomTov && !props.a.Time.TonightIsYomTov && !props.a.Time.IsYomKipper ?
                                             <>
                                                 <IonText className='big' color='success'>Fin Yom Tob 45 min</IonText>
 
@@ -1252,17 +1281,26 @@ function ZmanimView(props) {
                                     props.a.Time ?
                                         props.a.Time.Weekday != 'Shabbos' ?
                                             <>
-                                                <IonText color='horasyo'>Salida de Estrellas - Tzet Hakojabim 45 min </IonText>
+                                                <IonText color='horasyo'>Salida de Estrellas - Tzet Hakojabim 45 min</IonText>
                                                 <br />
                                                 {/* <IonText>{props.a.Zman ? `${formatZman3(dayjs(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())}` : null}</IonText> */}
                                                 <IonText>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
                                                 <br /><br />
 
-                                                <IonText color='horasyo'>Rabenu Tam </IonText>
-                                                <br />
-                                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Night72fixLevel)}` : `${formatZman3(props.a.Zman.Night72fixLevel)}` : null}</IonText> */}
-                                                {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Night72fixLevel)} </> : null}</IonText> */}
-                                                <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
+                                                {
+                                                    props.a.Time.IsYomKipper ?
+                                                        <>
+                                                            <IonText className='big' color='success'>Rabenu Tam</IonText>
+                                                            <br />
+                                                            <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <IonText color='horasyo'>Rabenu Tam</IonText>
+                                                            <br />
+                                                            <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
+                                                        </>
+                                                }
 
                                                 <br /><br />
                                             </>
@@ -1277,7 +1315,7 @@ function ZmanimView(props) {
 
                                 <br /><br /> */}
 
-                                                <IonText className='big' color='success'>Rabenu Tam </IonText>
+                                                <IonText className='big' color='success'>Rabenu Tam</IonText>
                                                 <br />
                                                 {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Night72fixLevel)}` : `${formatZman3(props.a.Zman.Night72fixLevel)}` : null}</IonText> */}
                                                 {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Night72fixLevel)} </> : null}</IonText> */}
