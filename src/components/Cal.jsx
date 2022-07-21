@@ -922,7 +922,7 @@ function Cal() {
                         <div className='ion-margin ion-text-center'>
                             <IonText className='' color='danger'>No tienes la version mas actulizada de la app!</IonText>
                             <br /><br />
-                            <IonText>Por favr actualiza antes de utilizarla.</IonText>
+                            <IonText>Por favor actualiza antes de utilizarla.</IonText>
                         </div>
 
                         <IonButton expand='block' color='tertiary' onClick={() => { window.open(url) }}>Actualizar</IonButton>
