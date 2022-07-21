@@ -71,18 +71,18 @@ function Converter() {
         if (diaHebreo.length < 2) { diaHebreo = '0' + diaHebreo }
 
         axios.get(`https://www.hebcal.com/converter?cfg=json&hy=${anioHebreo}&hm=${mesHebreo}&hd=${diaHebreo}&h2g=1&strict=1`)
-            .then((response) => { 
+            .then((response) => {
                 axios.get(`https://www.hebcal.com/yahrzeit?cfg=json&v=yahrzeit&years=10&hebdate=on&t1=Yahrzeit&d1=${response.data.gd}&m1=${response.data.gm}&y1=${response.data.gy}&s1=${afterSunset}`)
-                .then((response) => {
-                    for (let i in response.data.items) {
-                        result.push(`${response.data.items[i].date.split('-')[2]} de ${meses[Number(response.data.items[i].date.split('-')[1])]} de ${response.data.items[i].date.split('-')[0]}`)
-    
-                        setYorResult(result)
-                    }
-    
-                    setLoading2(false)
-                })
-                .catch((err) => { console.log(err) })
+                    .then((response) => {
+                        for (let i in response.data.items) {
+                            result.push(`${response.data.items[i].date.split('-')[2]} de ${meses[Number(response.data.items[i].date.split('-')[1])]} de ${response.data.items[i].date.split('-')[0]}`)
+
+                            setYorResult(result)
+                        }
+
+                        setLoading2(false)
+                    })
+                    .catch((err) => { console.log(err) })
             })
             .catch((err) => { console.log(err) })
     }
@@ -156,26 +156,28 @@ function Converter() {
 
             <br />
 
-            <div className='wrapper'>
-                {
-                    select == "spa" ?
-                        <>
+            {
+                select == "spa" ?
+                    <>
+                        <div className='wrapper'>
                             <div className='selector'>
                                 <IonLabel><IonIcon icon={calendarOutline}></IonIcon></IonLabel>
                                 <IonDatetime min="1900-01-01" max="2999-12-31" value={selectedDateYor} onIonChange={e => setSelectedDateYor(e.detail.value)}></IonDatetime>
                             </div>
 
                             <IonButton onClick={btnYorSpa} fill='outline' >Calcular</IonButton>
-                        </>
-                        :
-                        <>
-                            <IonLabel color="primary" position="stacked">Dia</IonLabel>
-                            <IonSelect value={diaHebreo} interface="popover" onIonChange={(e) => { setDiaHebreo(e.target.value) }}>
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div className='wrapper2'>
+                            <IonLabel color="primary" className='minimo'>Dia</IonLabel>
+                            <IonSelect className='minimo' value={diaHebreo} interface="popover" onIonChange={(e) => { setDiaHebreo(e.target.value) }}>
                                 {dayHebrew.map((item, i) => (<IonSelectOption key={i}>{item}</IonSelectOption>))}
                             </IonSelect>
 
-                            <IonLabel color="primary" position="stacked">Mes</IonLabel>
-                            <IonSelect value={mesHebreo} interface="popover" onIonChange={(e) => { setMesHebreo(e.target.value) }}>
+                            <IonLabel color="primary" className='minimo'>Mes</IonLabel>
+                            <IonSelect className='minimo' value={mesHebreo} interface="popover" onIonChange={(e) => { setMesHebreo(e.target.value) }}>
                                 <IonSelectOption value="Tishrei">Tishre</IonSelectOption>
                                 <IonSelectOption value="Cheshvan">Jeshvan</IonSelectOption>
                                 <IonSelectOption value="Kislev">Kislev</IonSelectOption>
@@ -191,15 +193,15 @@ function Converter() {
                                 <IonSelectOption value="Elul">Elul</IonSelectOption>
                             </IonSelect>
 
-                            <IonLabel color="primary" position="stacked">Año</IonLabel>
-                            <IonSelect value={anioHebreo} interface="popover" onIonChange={(e) => { setAnioHebreo(e.target.value) }}>
+                            <IonLabel color="primary" className='minimo'>Año</IonLabel>
+                            <IonSelect className='minimo' value={anioHebreo} interface="popover" onIonChange={(e) => { setAnioHebreo(e.target.value) }}>
                                 {yearHebrew.map((item, i) => (<IonSelectOption key={i}>{item}</IonSelectOption>))}
                             </IonSelect>
 
                             <IonButton onClick={btnYorHeb} fill='outline' >Calcular</IonButton>
-                        </>
-                }
-            </div>
+                        </div>
+                    </>
+            }
 
             <br />
 

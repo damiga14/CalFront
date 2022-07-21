@@ -30,7 +30,7 @@ function Tab6() {
 
           <br /><br />
 
-          <IonText>Para dudas o comentarios, puedes contactarnos a este correo <a href="mailto:activecode@gmail.com">activecode@gmail.com</a>.</IonText>
+          <IonText>Para dudas o comentarios, puedes contactarnos a este correo <a href="mailto:activecodejd@gmail.com">activecodejd@gmail.com</a>.</IonText>
           <br /><br />
           <IonImg src={logoActive} alt={"Active Code"} style={{ 'width': "40%", "height": "auto", "margin": "auto" }} />
         </div>

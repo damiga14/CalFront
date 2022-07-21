@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useLayoutEffect } from 'react'
-import { IonText, IonIcon, IonButton, IonPopover, IonPage, IonContent } from '@ionic/react';
+import { IonText, IonIcon, IonButton, IonPopover, useIonViewWillEnter, IonPage, IonContent } from '@ionic/react';
 import { chevronBackOutline, chevronForwardOutline } from "ionicons/icons";
 import axios from 'axios'
 import add from 'date-fns/add'
@@ -660,6 +660,12 @@ function Cal() {
         if (!status.connected) { setShowPopover2(true) }
     };
 
+    useIonViewWillEnter(() => {
+        axios.get('https://calateret.herokuapp.com/api/v1/myzmanimapi')
+            .then((response) => { user = response.data.data[0].user; key = response.data.data[0].key })
+            .catch((err) => { console.log(err) })
+    }, [])
+
     useLayoutEffect(() => {
         dayjs.extend(utc)
         dayjs.extend(timezone)
@@ -922,7 +928,7 @@ function Cal() {
                         <div className='ion-margin ion-text-center'>
                             <IonText className='' color='danger'>No tienes la version mas actulizada de la app!</IonText>
                             <br /><br />
-                            <IonText>Por favr actualiza antes de utilizarla.</IonText>
+                            <IonText>Por favor actualiza antes de utilizarla.</IonText>
                         </div>
 
                         <IonButton expand='block' color='tertiary' onClick={() => { window.open(url) }}>Actualizar</IonButton>

@@ -775,7 +775,7 @@ function ZmanimView(props) {
                             </div>
 
                             <div>
-                                {props.a.Time ? <><IonText className='small'>Daf Hayomi: <b><br /><IonText className="perasha">{props.a.Time.DafYomi}</IonText></b></IonText><br /><br /></> : null}
+                                {props.a.Time ? <><IonText className='small'>Daf Hayomi: <b><br /><IonText className="perasha">{props.a.Time.DafYomi}</IonText></b></IonText><br /></> : null}
                             </div>
 
                             {
@@ -783,6 +783,7 @@ function ZmanimView(props) {
                                     extra.slice(0, 5) == 'Ayuno' ?
                                         <>
                                             <div>
+                                                <br />
                                                 {extra ? <><b><IonText className="extra" color='danger'>{extra}</IonText></b><br /></> : null}
                                             </div>
                                         </>
