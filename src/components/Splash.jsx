@@ -49,9 +49,9 @@ function Splash() {
                                 <>
                                     <br /><br /><br />
 
-                                    <IonText className='textSplashChico'>{motive}</IonText>
+                                    <IonText className='textSplashChico lineUp1'>{motive}</IonText>
                                     <br />
-                                    <IonText className='textSplash'>{name}</IonText>
+                                    <IonText className='textSplash lineUp2'>{name}</IonText>
                                 </>
                                 : null
                         }
