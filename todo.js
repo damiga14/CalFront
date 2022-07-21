@@ -7,6 +7,9 @@ splash con Leiluy nishmat
 
 actulizar url de app y play store
 
+myzmanim cuenta pagada
+usr y key en back para cualquier cosa
+
 
 
 
