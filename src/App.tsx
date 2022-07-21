@@ -2,6 +2,8 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { swapHorizontalOutline, calendarNumberOutline, informationCircleOutline, searchCircleOutline, moonOutline } from 'ionicons/icons';
+
+import Splash from './components/Splash'
 import Tab1 from './pages/Tab1.jsx';
 import Tab2 from './pages/Tab2.jsx';
 import Tab3 from './pages/Tab3.jsx';
@@ -27,11 +29,34 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+import { createAnimation } from '@ionic/react';
+
+const animationBuilder = (baseEl: any, opts: any) => {
+  const enteringAnimation = createAnimation()
+    .addElement(opts.enteringEl)
+    .fromTo('opacity', 0, 1)
+    .duration(350);
+
+  const leavingAnimation = createAnimation()
+    .addElement(opts.leavingEl)
+    .fromTo('opacity', 1, 0)
+    .duration(350);
+
+  const animation = createAnimation()
+    .addAnimation(enteringAnimation)
+    .addAnimation(leavingAnimation);
+
+  return animation;
+};
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
-        <IonRouterOutlet>
+        <IonRouterOutlet animation={animationBuilder}>
+          <Route exact path="/splash">
+            <Splash />
+          </Route>
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
@@ -48,10 +73,11 @@ const App: React.FC = () => (
             <Tab6 />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/splash" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
+        
+        <IonTabBar slot="bottom" id='myTabBar'>
           <IonTabButton tab="tab1" href="/tab1">
             <IonIcon icon={calendarNumberOutline} />
             <IonLabel>Cal</IonLabel>

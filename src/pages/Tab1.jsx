@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IonContent, IonHeader, IonLabel, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonLabel, useIonViewDidEnter, useIonViewWillEnter, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
 import './Tab1.css';
 
 import Cal from '../components/Cal'
@@ -10,6 +10,11 @@ import Cal from '../components/Cal'
 
 
 function Tab1() {
+  useIonViewDidEnter(() => {
+    const tabBar = document.getElementById('myTabBar');
+    tabBar.style.display = 'flex';
+  })
+
   // const [value, onChange] = useState(new Date());
 
   // function dateClicked(value) {

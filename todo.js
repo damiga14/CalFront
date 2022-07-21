@@ -3,8 +3,6 @@
 
 cotizacon con mensual
 
-splash con Leiluy nishmat
-
 actulizar url de app y play store
 
 
