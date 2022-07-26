@@ -95,6 +95,14 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-background-contrast-rgb: 255, 255, 255;
   --ion-color-background-shade: #3171e0;
   --ion-color-background-tint: #4c8dff;
+
+  /** splashBackground **/
+  --ion-color-splashBackground: #ecf9ff;
+  --ion-color-splashBackground-rgb: 82, 96, 255;
+  --ion-color-splashBackground-contrast: #000000;
+  --ion-color-splashBackground-contrast-rgb: 255, 255, 255;
+  --ion-color-splashBackground-shade: #4854e0;
+  --ion-color-splashBackground-tint: #6370ff;
 }
 
 .ion-color-horasyo {
@@ -113,6 +121,15 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-contrast-rgb: var(--ion-color-background-contrast-rgb);
   --ion-color-shade: var(--ion-color-background-shade);
   --ion-color-tint: var(--ion-color-background-tint);
+}
+
+.ion-color-splashBackground {
+  --ion-color-base: var(--ion-color-splashBackground);
+  --ion-color-base-rgb: var(--ion-color-splashBackground-rgb);
+  --ion-color-contrast: var(--ion-color-splashBackground-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-splashBackground-contrast-rgb);
+  --ion-color-shade: var(--ion-color-splashBackground-shade);
+  --ion-color-tint: var(--ion-color-splashBackground-tint);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -35,7 +35,7 @@ const animationBuilder = (baseEl: any, opts: any) => {
   const enteringAnimation = createAnimation()
     .addElement(opts.enteringEl)
     .fromTo('opacity', 0, 1)
-    .duration(350);
+    .duration(0);
 
   const leavingAnimation = createAnimation()
     .addElement(opts.leavingEl)

@@ -579,12 +579,15 @@ function ZmanimView(props) {
 
             for (let i in props.a2.data.items) {
                 if (props.a2.data.items[i].category == 'havdalah') {
+                    // props.validaDST == '' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())) : props.validaDST == 'mexicoSumar' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').add(1, 'hour').$d.toString())) : <></>
+                    setHabdala(formatZman3(props.a2.data.items[i].date))
+
                     if (props.a2.data.items[i].memo == 'Yom Kippur') {
                         setKipur(true)
-                    }
-                    if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
                         setFastEnds(formatZman3(props.a2.data.items[i].date))
                     }
+                    // if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
+                    // }
                 }
                 else if (props.a2.data.items[i].category == 'candles') {
                     if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
@@ -595,7 +598,8 @@ function ZmanimView(props) {
                     // setHabdala(props.a2.data.items[i].title.slice(18, props.a2.data.items[i].title.length).replace('pm', ' PM'))
                     // if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
                     // !verano ? setHabdala(formatZman3(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())) : setHabdala(formatZman3(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').add(1, 'hour').$d.toString()))
-                    props.validaDST == '' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())) : props.validaDST == 'mexicoSumar' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').add(1, 'hour').$d.toString())) : <></>
+                    // la linea de abajo era la buena, pero como ya esta el if arriba, no entraba aca, por eso lo puse arriba, pero igual lo saque de hebcal porq myzmanim no da horario de verano y no se esta sumando no se porq
+                    // props.validaDST == '' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())) : props.validaDST == 'mexicoSumar' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').add(1, 'hour').$d.toString())) : <></>
                     // }
                 }
                 // else if (props.a2.data.items[i].title == 'El ayuno comienza') {
@@ -1162,6 +1166,15 @@ function ZmanimView(props) {
                                         : null
                                 }
 
+                                <IonText className='big' color='danger'>Puesta del Sol - Shekia </IonText>
+                                <br />
+                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunsetLevel)}` : `${formatZman3(props.a.Zman.SunsetLevel)}` : null}</IonText> */}
+                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
+                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
+                                <IonText>{formatZmanMio(SunsetLevel)}</IonText>
+
+                                <br /><br />
+
                                 {
                                     fastEnds ?
                                         !kipur ?
@@ -1248,15 +1261,6 @@ function ZmanimView(props) {
                                             : null
                                         : null
                                 }
-
-                                <IonText className='big' color='danger'>Puesta del Sol - Shekia </IonText>
-                                <br />
-                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunsetLevel)}` : `${formatZman3(props.a.Zman.SunsetLevel)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(SunsetLevel)}</IonText>
-
-                                <br /><br />
 
                                 {
                                     props.a.Time ?

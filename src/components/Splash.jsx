@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import { IonContent, IonIcon, IonPage, useIonViewDidEnter, IonHeader, IonButton, IonToolbar, IonTitle, IonLabel, IonButtons, IonSearchbar, IonSegmentButton, IonSegment, IonItem, IonText, IonToggle, } from "@ionic/react";
 import { useHistory } from 'react-router-dom'
 import logo from '../assets/logo.png'
+import logoBlanco from '../assets/logoBlanco.JPG'
 import axios from 'axios'
 import './Splash.css'
 
@@ -36,22 +37,22 @@ function Splash() {
     return (
         <>
             <IonPage>
-                <IonContent>
-                    <div className='logoSplash fuenteSplash ion-text-center'>
-                        <img src={logo} alt="" width={'80%'} />
+                <IonContent color='splashBackground'>
+                    <div className='logoSplash ion-text-center'>
+                        <img className='logoSplashIMG' src={logoBlanco} alt="" width={'80%'} />
 
                         <br /><br /><br />
 
-                        <IonText className='textSplash'>Calendario Ateret Yosef</IonText>
+                        <IonText className='textSplash fuenteSplash'>Calendario Ateret Yosef</IonText>
 
                         {
                             display ?
                                 <>
                                     <br /><br /><br />
 
-                                    <IonText className='textSplashChico lineUp1'>{motive}</IonText>
+                                    <IonText className='textSplashChico lineUp1 fuenteSplash'>{motive}</IonText>
                                     <br />
-                                    <IonText className='textSplash lineUp2'>{name}</IonText>
+                                    <IonText className='textSplash lineUp2 fuenteSplash'>{name}</IonText>
                                 </>
                                 : null
                         }
