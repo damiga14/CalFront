@@ -3,7 +3,7 @@
 
 cotizacon con mensual
 
-actulizar url de app y play store
+bar mitzva fecha hebreo tambien
 
 myzmanim cuenta pagada
 
