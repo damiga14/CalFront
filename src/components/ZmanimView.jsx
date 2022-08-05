@@ -12,6 +12,7 @@ import Loading from '../components/Loading'
 // import sub from 'date-fns/sub'
 // import { format, compareAsc } from 'date-fns'
 import './ZmanimView.css'
+import axios from 'axios';
 
 function getLastSunday(year, month) {
     let d = new Date(year, month, 0);
@@ -189,6 +190,7 @@ function ZmanimView(props) {
     let [izcor, setIzcor] = useState(true)
     let [loading, setLoading] = useState(true)
     let [avisaDST, setAvisaDST] = useState(false)
+    let [locationName, setLocationName] = useState('')
 
     let [Yakir110, setYakir110] = useState()
     let [Dawn72fix, setDawn72fix] = useState()
@@ -558,6 +560,10 @@ function ZmanimView(props) {
         if (!props.date == '' && props.a.length != 0 && props.a2.length != 0) {
             setTimeout(() => { setLoading(false) }, 500)
         }
+
+        axios.post('https://libretranslate.de/translate', { "q": tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' '), "source": "en", "target": "es" })
+            .then((response) => { setLocationName(response.data.translatedText) })
+            .catch(() => { setLocationName(tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' ')) })
     }, [props])
 
     useEffect(() => {
@@ -579,15 +585,15 @@ function ZmanimView(props) {
 
             for (let i in props.a2.data.items) {
                 if (props.a2.data.items[i].category == 'havdalah') {
-                    // props.validaDST == '' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())) : props.validaDST == 'mexicoSumar' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').add(1, 'hour').$d.toString())) : <></>
-                    setHabdala(formatZman3(props.a2.data.items[i].date))
+                    if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
+                        // props.validaDST == '' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())) : props.validaDST == 'mexicoSumar' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').add(1, 'hour').$d.toString())) : <></>
+                        setHabdala(formatZman3(props.a2.data.items[i].date))
 
-                    if (props.a2.data.items[i].memo == 'Yom Kippur') {
-                        setKipur(true)
-                        setFastEnds(formatZman3(props.a2.data.items[i].date))
+                        if (props.a2.data.items[i].memo == 'Yom Kippur') {
+                            setKipur(true)
+                            setFastEnds(formatZman3(props.a2.data.items[i].date))
+                        }
                     }
-                    // if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
-                    // }
                 }
                 else if (props.a2.data.items[i].category == 'candles') {
                     if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
@@ -726,7 +732,7 @@ function ZmanimView(props) {
 
     return (
         <>
-            {/* {console.log(props.a, props.a2)} */}
+            {console.log(props.a, props.a2)}
 
             {
                 props.a.ErrMsg == 'DateOutOfRange' ?
@@ -741,9 +747,11 @@ function ZmanimView(props) {
 
                     loading ? <Loading /> :
                         <>
+                            <IonText className='locationName'>Mostrando horarios para {locationName}</IonText>
+
                             {
                                 verano && !avisaDST ?
-                                    <><IonText className='small' color='danger'>Contemplamos horario de verano</IonText><br /><br /></>
+                                    <><br /><IonText className='small' color='danger'>Contemplamos horario de verano</IonText><br /><br /></>
                                     : null
                             }
 
@@ -1264,13 +1272,15 @@ function ZmanimView(props) {
 
                                 {
                                     props.a.Time ?
-                                        props.a.Time.IsYomTov && !props.a.Time.TonightIsYomTov && !props.a.Time.IsYomKipper ?
+                                        props.a.Time.IsYomTov && !props.a.Time.TonightIsYomTov && !props.a.Time.IsYomKipper && props.a.Time.Weekday != 'Friday' ?
                                             <>
                                                 <IonText className='big' color='success'>Fin Yom Tob 45 min</IonText>
 
                                                 <br />
 
-                                                <IonText className='big'>{habdala}</IonText>
+                                                {/* <IonText className='big'>{habdala}</IonText> */}
+                                                <IonText>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
+
 
                                                 <br />
 

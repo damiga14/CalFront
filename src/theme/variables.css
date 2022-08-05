@@ -97,7 +97,8 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-background-tint: #4c8dff;
 
   /** splashBackground **/
-  --ion-color-splashBackground: #ecf9ff;
+  /* --ion-color-splashBackground: #ecf9ff; */
+  --ion-color-splashBackground: #ffffff;
   --ion-color-splashBackground-rgb: 82, 96, 255;
   --ion-color-splashBackground-contrast: #000000;
   --ion-color-splashBackground-contrast-rgb: 255, 255, 255;

@@ -142,7 +142,7 @@ function Cal() {
     let [showPopover2, setShowPopover2] = useState(false);
     let [showPopover3, setShowPopover3] = useState(false);
     let [alert, setAlert] = useState('')
-    let [url, setUrl] = useState('')
+    let [url, setUrl] = useState('https://calateretdownload.netlify.app')
     // let [veranoCode, setVeranoCode] = useState('abrir dia')
 
     async function getLocation() {
@@ -695,15 +695,15 @@ function Cal() {
 
         logCurrentNetworkStatus()
 
-        const logDeviceInfo = async () => {
-            const info = await Device.getInfo();
+        // const logDeviceInfo = async () => {
+        //     const info = await Device.getInfo();
 
-            info.operatingSystem == 'ios'
-                ? setUrl('https://apps.apple.com/mx/app/tebila-app/id1572888530')
-                : setUrl('https://play.google.com/store/apps/details?id=com.davidamiga.tebilaapp')
-        };
+        //     info.operatingSystem == 'ios'
+        //         ? setUrl('https://apps.apple.com/mx/app/tebila-app/id1572888530')
+        //         : setUrl('https://play.google.com/store/apps/details?id=com.davidamiga.tebilaapp')
+        // };
 
-        logDeviceInfo()
+        // logDeviceInfo()
     }, [])
 
     useLayoutEffect(() => {

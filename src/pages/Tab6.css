@@ -1,0 +1,28 @@
+.container_row {
+    display: grid;
+    margin: auto;
+    width: 100%;
+  }
+  
+  .layer1,
+  .layer2 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .mario {
+    transform: translateY(100%);
+    animation: mover 1s;
+  
+    animation-direction: normal;
+  }
+  
+  @keyframes mover {
+    0% {
+      transform: translateY(-10);
+    }
+    25% {
+      transform: translateY(-30px);
+    }
+  }
+  
