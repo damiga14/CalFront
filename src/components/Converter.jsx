@@ -14,6 +14,7 @@ function Converter() {
     if (new Date().getDate().toString().length < 2) { dia = '0' + dia }
     let [selectedDateBar, setSelectedDateBar] = useState(`${new Date().getFullYear()}-${mes}-${dia}`)
     let [barMitzvaResult, setBarMitzvaResult] = useState(``)
+    let [barMitzvaResult2, setBarMitzvaResult2] = useState(``)
     let [selectedDateYor, setSelectedDateYor] = useState(`${new Date().getFullYear()}-${mes}-${dia}`)
     let [yorResult, setYorResult] = useState(``)
     let [loading, setLoading] = useState(false)
@@ -31,6 +32,8 @@ function Converter() {
         axios.get(`https://www.hebcal.com/converter?cfg=json&gy=${selectedDateBar.split('-')[0]}&gm=${selectedDateBar.split('-')[1]}&gd=${selectedDateBar.split('-')[2]}&g2h=1`)
             .then((response) => {
                 response.data.hy += 13
+
+                setBarMitzvaResult2(`${response.data.hd} de ${response.data.hm} de ${response.data.hy}`)
 
                 axios.get(`https://www.hebcal.com/converter?cfg=json&hy=${response.data.hy}&hm=${response.data.hm}&hd=${response.data.hd}&h2g=1`)
                     .then((response) => {
@@ -134,6 +137,8 @@ function Converter() {
 
                                         <br />
 
+                                        <IonText>{barMitzvaResult2}</IonText>
+                                        <br />
                                         <IonText>{barMitzvaResult}</IonText>
                                     </div>
                                 </>

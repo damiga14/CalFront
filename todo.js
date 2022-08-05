@@ -3,7 +3,7 @@
 
 cotizacon con mensual
 
-actulizar url de app y play store en pagina 
+actulizar url de app y play store
 
 myzmanim cuenta pagada
 
