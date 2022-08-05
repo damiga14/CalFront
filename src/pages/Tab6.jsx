@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonText, IonLabel, IonTitle, IonImg, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonText, IonLabel, IonTitle, IonImg, IonToolbar, IonButton } from '@ionic/react';
 import './Tab6.css';
 import logoAteret from '../assets/logo.png'
 import logoActive from "../assets/LogoActiveAnimated.gif";
@@ -48,7 +48,10 @@ function Tab6() {
 
           <br /><br />
 
-          <IonText>Para dudas o comentarios, puedes contactarnos a este correo <a href="mailto:activecodejd@gmail.com">activecodejd@gmail.com</a>.</IonText>
+          <IonText>Para dudas o comentarios, puedes contactarnos dando click aqui <IonButton fill='outline' onClick={() => { window.open('https://supportac.netlify.app/') }}>Contacto</IonButton>.</IonText>
+          {/* <IonText>Para dudas o comentarios, puedes contactarnos a este correo <a href="mailto:activecodejd@gmail.com">activecodejd@gmail.com</a>.</IonText> */}
+          {/* <br /> */}
+          {/* <center><IonButton onClick={() => { window.open('https://supportac.netlify.app/') }}>Contacto</IonButton></center> */}
           <br /><br />
 
           <center>
