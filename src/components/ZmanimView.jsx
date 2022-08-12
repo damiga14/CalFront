@@ -561,9 +561,14 @@ function ZmanimView(props) {
             setTimeout(() => { setLoading(false) }, 500)
         }
 
-        axios.post('https://libretranslate.de/translate', { "q": tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' '), "source": "en", "target": "es" })
-            .then((response) => { setLocationName(response.data.translatedText) })
-            .catch(() => { setLocationName(tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' ')) })
+        if(props.a.Place != undefined){
+            setLocationName(props.a.Place.Name)
+            console.log(props.a.Place.NameHtml)
+        }
+
+        // axios.post('https://libretranslate.de/translate', { "q": tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' '), "source": "en", "target": "es" })
+        //     .then((response) => { setLocationName(response.data.translatedText) })
+        //     .catch(() => { setLocationName(tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' ')) })
     }, [props])
 
     useEffect(() => {
@@ -732,7 +737,7 @@ function ZmanimView(props) {
 
     return (
         <>
-            {console.log(props.a, props.a2)}
+            {/* {console.log(props.a, props.a2)} */}
 
             {
                 props.a.ErrMsg == 'DateOutOfRange' ?
