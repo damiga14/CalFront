@@ -752,7 +752,9 @@ function ZmanimView(props) {
 
                     loading ? <Loading /> :
                         <>
-                            <IonText className='locationName'>Mostrando horarios para {locationName}</IonText>
+                            <IonText className='locationName'>Mostrando horarios para</IonText>
+                            <br />
+                            <IonText className='locationName'>{locationName}</IonText>
 
                             {
                                 verano && !avisaDST ?
