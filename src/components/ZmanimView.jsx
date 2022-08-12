@@ -563,7 +563,7 @@ function ZmanimView(props) {
 
         if(props.a.Place != undefined){
             setLocationName(props.a.Place.Name)
-            console.log(props.a.Place.NameHtml)
+            console.log(props.a.Place)
         }
 
         // axios.post('https://libretranslate.de/translate', { "q": tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' '), "source": "en", "target": "es" })
