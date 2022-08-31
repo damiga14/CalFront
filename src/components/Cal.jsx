@@ -144,6 +144,7 @@ function Cal() {
     let [alert, setAlert] = useState('')
     let [url, setUrl] = useState('https://calateretdownload.netlify.app')
     // let [veranoCode, setVeranoCode] = useState('abrir dia')
+    let [locationName, setLocationName] = useState('')
 
     async function getLocation() {
         let position = await Geolocation.getCurrentPosition()
@@ -203,7 +204,7 @@ function Cal() {
         var day = JSON.parse(response);
 
         setAPIresponse(day)
-        // setAPIresponseTemp(day)
+        // setAPIresponseTemp(day)        
     }
 
     function myZmanimCall_callback2(response) {
@@ -324,12 +325,8 @@ function Cal() {
     // document.write("The current month is " + monthNames[d.getMonth()]);
 
     function clickCuadrito(year, month, day) {
-        if (day.length < 2) {
-            day = '0' + day
-        }
-        if (month.toString().length < 2) {
-            month = '0' + month.toString()
-        }
+        if (day.length < 2) { day = '0' + day }
+        if (month.toString().length < 2) { month = '0' + month.toString() }
 
         let date = `${year}-${month}-${day}`
 
@@ -662,7 +659,11 @@ function Cal() {
 
     useIonViewWillEnter(() => {
         axios.get('https://calateret.herokuapp.com/api/v1/myzmanimapi')
-            .then((response) => { user = response.data.data[0].user; key = response.data.data[0].key })
+            .then((response) => {
+                user = response.data.data[0].user
+                key = response.data.data[0].key
+                myZmanimCallGPS(myZmanimCallGPS_callback2, `${todaysDate.split('-')[0]}-${Number(todaysDate.split('-')[1]) + 1}-${todaysDate.split('-')[2]}`)
+            })
             .catch((err) => { console.log(err) })
     }, [])
 
@@ -742,6 +743,15 @@ function Cal() {
             }
         }
     }, [APIresponse])
+
+    useLayoutEffect(() => {
+        if (APIresponseTemp != 0) {
+            if (!APIresponseTemp.ErrMsg) {
+                if (APIresponseTemp.Place.Country != APIresponseTemp.Place.State) { setLocationName(`${APIresponseTemp.Place.Country}, ${APIresponseTemp.Place.State}`) }
+                else { setLocationName(`${APIresponseTemp.Place.Country}`) }
+            }
+        }
+    }, [APIresponseTemp])
 
     useEffect(() => {
         if (todaysDateToChange !== '') {
@@ -945,6 +955,12 @@ function Cal() {
                     <div className='arriba'>
                         <img src={logo} alt="" width={'20%'} />
                     </div>
+
+                    <center>
+                        <br />
+                        <IonText className='locationName'>Ubicacion: </IonText> <IonText color='tertiary' className='locationName'>{locationName}</IonText>
+                    </center>
+
                     {/* <img src={logo} alt="" className='logo' /> */}
 
                     <div className="buttonsCalName ion-marginz">

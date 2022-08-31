@@ -561,9 +561,10 @@ function ZmanimView(props) {
             setTimeout(() => { setLoading(false) }, 500)
         }
 
-        if(props.a.Place != undefined){
-            setLocationName(props.a.Place.Name)
-            console.log(props.a.Place)
+        if (props.a.Place != undefined) {
+            if (props.a.Place.Country != props.a.Place.State) { setLocationName(`${props.a.Place.Country}, ${props.a.Place.State}`) }
+            else { setLocationName(`${props.a.Place.Country}`) }
+            // console.log(props.a.Place)
         }
 
         // axios.post('https://libretranslate.de/translate', { "q": tzlookup(props.lat, props.long).slice(tzlookup(props.lat, props.long).indexOf('/') + 1).replace('_', ' '), "source": "en", "target": "es" })
@@ -752,13 +753,12 @@ function ZmanimView(props) {
 
                     loading ? <Loading /> :
                         <>
-                            <IonText className='locationName'>Mostrando horarios para</IonText>
+                            <IonText className='locationName'>Ubicacion: </IonText> <IonText color='tertiary' className='locationName'>{locationName}</IonText>
                             <br />
-                            <IonText className='locationName'>{locationName}</IonText>
 
                             {
                                 verano && !avisaDST ?
-                                    <><br /><IonText className='small' color='danger'>Contemplamos horario de verano</IonText><br /><br /></>
+                                    <><br /><IonText className='small' color='danger'>Contemplamos horario de verano</IonText><br /></>
                                     : null
                             }
 
@@ -769,6 +769,7 @@ function ZmanimView(props) {
                             }
 
                             <div className='titulo'>
+                                <br />
                                 {props.a.Time ? `${getDayEspanol(props.a.Time.Weekday)}` : null} {Number(props.date.slice(8, props.date.length))} de {getMonthName(props.date.slice(5, 7) - 1)}
                                 <br />
                                 {/* {props.a.Time ? `${props.a.Time.DateJewishShort}` : null} */}
