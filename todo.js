@@ -1,5 +1,8 @@
 /*
 
+Yortzait, aparte de los 10 años poner la fecha q se puso en español convertida 
+
+Perlas ha en bar muyzva 
 
 cotizacon con mensual
 
