@@ -15,7 +15,7 @@ function Splash() {
     let [name, setName] = useState()
 
     useLayoutEffect(() => {
-        axios.get(`https://calateret.herokuapp.com/api/v1/donadores`)
+        axios.get(`${process.env.REACT_APP_BackURL}/api/v1/donadores`)
             .then((response) => {
                 setDonador(response.data.data[0])
                 setDisplay(response.data.data[0].display)

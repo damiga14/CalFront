@@ -658,7 +658,7 @@ function Cal() {
     };
 
     useIonViewWillEnter(() => {
-        axios.get('https://calateret.herokuapp.com/api/v1/myzmanimapi')
+        axios.get(`${process.env.REACT_APP_BackURL}/api/v1/myzmanimapi`)
             .then((response) => {
                 user = response.data.data[0].user
                 key = response.data.data[0].key
@@ -671,7 +671,7 @@ function Cal() {
         dayjs.extend(utc)
         dayjs.extend(timezone)
 
-        axios.get('https://calateret.herokuapp.com/api/v1/alerts')
+        axios.get(`${process.env.REACT_APP_BackURL}/api/v1/alerts`)
             .then((response) => {
                 for (let i in response.data.data) {
                     if (new Date().getTime() > new Date(response.data.data[i].dateStart).getTime() && new Date().getTime() < new Date(response.data.data[i].dateEnd).getTime()) {
@@ -683,7 +683,7 @@ function Cal() {
             })
             .catch((err) => { console.log(err) })
 
-        axios.get('https://calateret.herokuapp.com/api/v1/version')
+        axios.get(`${process.env.REACT_APP_BackURL}/api/v1/version`)
             .then((response) => {
                 if (Number(response.data.data[0].VersionNumber) > localVersion) {
                     setShowPopover3(true)

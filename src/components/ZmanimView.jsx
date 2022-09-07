@@ -12,7 +12,7 @@ import Loading from '../components/Loading'
 // import sub from 'date-fns/sub'
 // import { format, compareAsc } from 'date-fns'
 import './ZmanimView.css'
-import axios from 'axios';
+// import axios from 'axios';
 
 function getLastSunday(year, month) {
     let d = new Date(year, month, 0);

@@ -11,7 +11,7 @@ function Tab5() {
   let [loading, setLoading] = useState(true)
 
   async function levanaCall() {
-    axios.get(`https://calateret.herokuapp.com/api/v1/getLevana`)
+    axios.get(`${process.env.REACT_APP_BackURL}/api/v1/getLevana`)
       .then((response) => {
         setLevanaResponse2(response.data.data[0].json)
         setLoading(false)
