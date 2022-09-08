@@ -4,6 +4,8 @@ Yortzait, aparte de los 10 años poner la fecha q se puso en español convertida
 
 Perlas ha en bar muyzva 
 
+shabat q quede dentro del cuadro
+
 cotizacon con mensual
 
 actulizar url de app y play store
