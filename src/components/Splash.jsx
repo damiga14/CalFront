@@ -52,7 +52,7 @@ function Splash() {
 
                                     <IonText className='textSplashChico lineUp1 fuenteSplash'>{motive}</IonText>
                                     <br />
-                                    <IonText className='textSplash lineUp2 fuenteSplash'>{name}</IonText>
+                                    <IonText className='textSplash lineUp2 fuenteSplash ion-margin'>{name}</IonText>
                                 </>
                                 : null
                         }

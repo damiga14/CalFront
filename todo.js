@@ -2,7 +2,13 @@
 
 download page links bien
 
+<<<<<<< HEAD
 actulizar url de app y play store cunando hay q actualizar
+=======
+shabat q quede dentro del cuadro
+
+cotizacon con mensual
+>>>>>>> f6998e6c754de97f04c01e0f10b8849abb4daf73
 
 android icon y splash
 
