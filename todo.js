@@ -1,18 +1,17 @@
 /*
 
-Yortzait, aparte de los 10 años poner la fecha q se puso en español convertida 
+download page links bien
 
-Perlas ha en bar muyzva 
-
-cotizacon con mensual
-
-actulizar url de app y play store
-
-myzmanim cuenta pagada
+actulizar url de app y play store cunando hay q actualizar
 
 android icon y splash
 
+myzmanim cuenta pagada
 
+
+
+Yortzait, aparte de los 10 años poner la fecha q se puso en español convertida 
+Perlas en bar muyzva 
 
 
 tache de zmanim view bien en esquina
