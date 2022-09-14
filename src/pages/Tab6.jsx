@@ -48,7 +48,7 @@ function Tab6() {
 
           <br /><br />
 
-          <IonText>Para dudas o comentarios, puedes contactarnos dando click aqui <IonButton fill='outline' onClick={() => { window.open('https://supportac.netlify.app/') }}>Contacto</IonButton>.</IonText>
+          <IonText>Para dudas o comentarios, puedes contactarnos dando click aqui <IonButton fill='outline' onClick={() => { window.open('https://supportac.netlify.app/') }}>Contacto</IonButton></IonText>
           {/* <IonText>Para dudas o comentarios, puedes contactarnos a este correo <a href="mailto:activecodejd@gmail.com">activecodejd@gmail.com</a>.</IonText> */}
           {/* <br /> */}
           {/* <center><IonButton onClick={() => { window.open('https://supportac.netlify.app/') }}>Contacto</IonButton></center> */}
