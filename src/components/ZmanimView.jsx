@@ -705,7 +705,7 @@ function ZmanimView(props) {
                                 setFastBegins(formatZman3(dayjs(props.a2.data.items[i2].date).subtract(5, 'minute').$d.toString()))
                             }
                             else if (props.a2.data.items[i2].memo == 'Erev Yom Kippur' && props.a.Time.IsErevYomKipper) {
-                                setFastBegins(formatZman3(dayjs(props.a2.data.items[i2].date).subtract(10, 'minute').$d.toString()))
+                                setFastBegins(formatZman3(dayjs(props.a2.data.items[i2].date).add(8, 'minute').$d.toString()))
                             }
 
                             // setFastBegins(formatZman3(props.a2.data.items[i2].date))
@@ -895,7 +895,7 @@ function ZmanimView(props) {
                                 {
                                     extra ?
                                         props.a.Time ?
-                                            extra.includes('Sukot') && !extra.includes('Erev') && props.a.Time.Weekday != 'Shabbos' ?
+                                            extra.includes('Sukot') || extra.includes('Hoshana Raba') && !extra.includes('Erev') && props.a.Time.Weekday != 'Shabbos' ?
                                                 <><b><IonText className="extra small" color='success'>Beraja de lulab</IonText></b><br /></>
                                                 : null
                                             : null
@@ -1169,6 +1169,22 @@ function ZmanimView(props) {
                                 }
 
                                 {
+                                    props.a.Time ?
+                                        props.a.Time.TonightIsYomTov && props.a.Time.Weekday != 'Friday' ?
+                                            <>
+                                                <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
+
+                                                <br />
+
+                                                <IonText className='big'>{candles}</IonText>
+
+                                                <br /> <br />
+                                            </>
+                                            : null
+                                        : null
+                                }
+
+                                {
                                     fastBegins ?
                                         <>
                                             <IonText className='big' color='danger'>Ayuno Comienza</IonText>
@@ -1258,22 +1274,6 @@ function ZmanimView(props) {
 
                                                     <br /> <br /> */}
                                                 </>
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.TonightIsYomTov && props.a.Time.Weekday != 'Friday' ?
-                                            <>
-                                                <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
-
-                                                <br />
-
-                                                <IonText className='big'>{candles}</IonText>
-
-                                                <br /> <br />
-                                            </>
                                             : null
                                         : null
                                 }

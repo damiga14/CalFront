@@ -1,16 +1,11 @@
 /*
 
-download page links bien
+validar bircat halebana q solo salga si es el mes
 
-<<<<<<< HEAD
-actulizar url de app y play store cunando hay q actualizar
-=======
+download page link android
+
 shabat q quede dentro del cuadro
 
-cotizacon con mensual
->>>>>>> f6998e6c754de97f04c01e0f10b8849abb4daf73
-
-android icon y splash
 
 myzmanim cuenta pagada
 
