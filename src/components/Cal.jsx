@@ -871,7 +871,8 @@ function Cal() {
                 }
 
                 if (calStructureHolidays[cual] != undefined) {
-                    if (calStructureHolidays[cual].includes('Tzom')) { document.getElementById(`square${id}`).innerHTML += ` <extra id=extra${id}>${calStructureHolidays[cual].replace('Tzom', '17 de')}</extra>` }
+                    if (calStructureHolidays[cual].includes('Tzom Tammuz')) { document.getElementById(`square${id}`).innerHTML += ` <extra id=extra${id}>${calStructureHolidays[cual].replace('Tzom Tammuz', 'Ayuno 17 de Tamuz')}</extra>` }
+                    else if (calStructureHolidays[cual].includes('Tzom')) { document.getElementById(`square${id}`).innerHTML += ` <extra id=extra${id}>${calStructureHolidays[cual].replace('Tzom', 'Ayuno de')}</extra>` }
                     else if (calStructureHolidays[cual].includes('observado')) { document.getElementById(`square${id}`).innerHTML += ` <extra id=extra${id}>${calStructureHolidays[cual].replace('(observado)', '')}</extra>` }
                     else if (calStructureHolidays[cual].includes('Erev')) { document.getElementById(`square${id}`).innerHTML += ` <extra id=extra${id}>${calStructureHolidays[cual].replace('Erev', 'Vispera de ')}</extra>` }
                     else { document.getElementById(`square${id}`).innerHTML += ` <extra id=extra${id}>${calStructureHolidays[cual]}</extra>` }

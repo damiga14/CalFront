@@ -631,7 +631,8 @@ function ZmanimView(props) {
                     if (props.a2.data.items[i].date.slice(8, 10) == today) {
                         if (!hayAntes) {
                             if (props.a.Time.IsFastDay) {
-                                if (props.a2.data.items[i].title.includes('Tzom')) { setExtra('Ayuno ' + props.a2.data.items[i].title.replace('Tzom', '17 de')) }
+                                if (props.a2.data.items[i].title.includes('Tzom Tammuz')) { setExtra('Ayuno ' + props.a2.data.items[i].title.replace('Tzom Tammuz', '17 de Tamuz')) }
+                                else if (props.a2.data.items[i].title.includes('Tzom')) { setExtra('Ayuno ' + props.a2.data.items[i].title.replace('Tzom', 'de')) }
                                 else { setExtra('Ayuno ' + props.a2.data.items[i].title) }
                             }
                             else {
@@ -989,9 +990,9 @@ function ZmanimView(props) {
 
                                                 {
                                                     verano ?
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[props.date.slice(8, 10)].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajComer[props.date.slice(8, 10)].abrilVerano}</IonText> </>
+                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].abrilVerano}</IonText> </>
                                                         :
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[props.date.slice(8, 10)].marzo}</IonText> </> : <> <IonText>{horariosPesajComer[props.date.slice(8, 10)].abril}</IonText> </>
+                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].marzo}</IonText> </> : <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].abril}</IonText> </>
                                                 }
 
                                                 <br /><br />
@@ -1001,21 +1002,21 @@ function ZmanimView(props) {
                                                 <br />
                                                 {
                                                     verano ?
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[props.date.slice(8, 10)].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajVender[props.date.slice(8, 10)].abrilVerano}</IonText> </>
+                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].abrilVerano}</IonText> </>
                                                         :
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[props.date.slice(8, 10)].marzo}</IonText> </> : <> <IonText>{horariosPesajVender[props.date.slice(8, 10)].abril}</IonText> </>
+                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].marzo}</IonText> </> : <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].abril}</IonText> </>
                                                 }
 
                                                 <br /><br />
 
-                                                <IonText color='horasyo'>Jatzot (comer aficoman)</IonText>
+                                                <IonText color='horasyo'>Jatzot Laila (comer aficoman)</IonText>
 
                                                 <br />
 
                                                 {/* <IonText>{props.a.Zman ? `${formatZman3(props.a.Zman.Midnight)}` : null}</IonText> */}
                                                 {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Midnight)} </> : null}</IonText> */}
                                                 {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Midnight)} </> : null}</IonText> */}
-                                                <IonText>{Midnight}</IonText>
+                                                <IonText>{formatZmanMio(Midnight)}</IonText>
 
                                             </div>
                                         </>
