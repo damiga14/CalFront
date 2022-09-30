@@ -589,13 +589,14 @@ function ZmanimView(props) {
             setPerasha()
             setKipur()
 
+            // console.log(props.a2.data.items)
             for (let i in props.a2.data.items) {
-                if (props.a2.data.items[i].category == 'havdalah') {
+                if (props.a2.data.items[i].category == 'havdalah' || props.a2.data.items[i].title == 'Yom Kippur') {
                     if (props.date == props.a2.data.items[i].date.slice(0, 10)) {
                         // props.validaDST == '' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())) : props.validaDST == 'mexicoSumar' ? setHabdala(formatZmanMio(dayjs.tz(props.a.Zman.SunsetLevel).add(45, 'minute').add(1, 'hour').$d.toString())) : <></>
                         setHabdala(formatZman3(props.a2.data.items[i].date))
 
-                        if (props.a2.data.items[i].memo == 'Yom Kippur') {
+                        if (props.a2.data.items[i].memo == 'Yom Kippur' || props.a2.data.items[i].memo == 'Day of Atonement') {
                             setKipur(true)
                             setFastEnds(formatZman3(props.a2.data.items[i].date))
                         }
@@ -649,6 +650,7 @@ function ZmanimView(props) {
                                     if (props.a2.data.items[i].title != 'Rosh Hashana LaBehemot') {
                                         if (props.a2.data.items[i].title.includes('observado')) { setExtra(props.a2.data.items[i].title.replace('(observado)', '')) }
                                         else if (props.a2.data.items[i].title.includes('Erev')) { setExtra2(props.a2.data.items[i].title.replace('Erev', 'Visepra de ')) }
+                                        else if (props.a2.data.items[i].title.includes('Havdalah (45 min)')) { setExtra(props.a2.data.items[i].memo) }
                                         else { setExtra(props.a2.data.items[i].title) }
                                     }
                                 }
@@ -701,7 +703,6 @@ function ZmanimView(props) {
                 if (props.a2) {
                     for (let i2 in props.a2.data.items) {
                         if ((props.a2.data.items[i2].title == 'El ayuno comienza' && props.a.Time.IsErevTishaBav) || (props.a2.data.items[i2].memo == 'Erev Yom Kippur' && props.a.Time.IsErevYomKipper)) {
-
                             if (props.a.Time.IsErevTishaBav) {
                                 setFastBegins(formatZman3(dayjs(props.a2.data.items[i2].date).subtract(5, 'minute').$d.toString()))
                             }
@@ -1230,7 +1231,7 @@ function ZmanimView(props) {
                                             </>
                                             :
                                             <>
-                                                <IonText className='big' color='success'>Fin Ayuno 45 min</IonText>
+                                                <IonText className='big' color='success'>Fin Ayuno y Yom Tob 45 min</IonText>
 
                                                 <br />
 
