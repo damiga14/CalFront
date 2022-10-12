@@ -143,6 +143,7 @@ function Cal() {
     let [url, setUrl] = useState('https://calateretdownload.netlify.app')
     // let [veranoCode, setVeranoCode] = useState('abrir dia')
     let [locationName, setLocationName] = useState('')
+    let [sumarHoras, setSumerHoras] = useState(true)
 
     async function getLocation() {
         let position = await Geolocation.getCurrentPosition()
@@ -686,6 +687,8 @@ function Cal() {
                 if (Number(response.data.data[0].VersionNumber) > process.env.REACT_APP_Version) {
                     setShowPopover3(true)
                 }
+
+                setSumerHoras(response.data.data[0].sumaVerano)
             })
             .catch((err) => { console.log(err) })
 
@@ -721,21 +724,23 @@ function Cal() {
 
             // setVeranoCode(APIresponse.Time.DaylightTime)
 
-            if (APIresponse.Time.DaylightTime == 2 || APIresponse.Time.DaylightTime == 3) {
-                // if (APIresponse.Time.DaylightTime != 0) {
-                // MyZmanim no sabe si hay DST
-                if ((time.dstOffsetStr != time.utcOffsetStr)) {
-                    // Pero si hay DST
+            if (sumarHoras) {
+                if (APIresponse.Time.DaylightTime == 2 || APIresponse.Time.DaylightTime == 3) {
+                    // if (APIresponse.Time.DaylightTime != 0) {
+                    // MyZmanim no sabe si hay DST
+                    if ((time.dstOffsetStr != time.utcOffsetStr)) {
+                        // Pero si hay DST
 
-                    if (time.name.includes('Mex')) {
-                        // Estoy en Mexico
-                        // sumar hora a todo
-                        setValidaDST('mexicoSumar')
-                    }
-                    else {
-                        // No estoy en Mexico
-                        // mensaje q hay dst y hay q sumar
-                        setValidaDST('mundoAvisar')
+                        if (time.name.includes('Mex')) {
+                            // Estoy en Mexico
+                            // sumar hora a todo
+                            setValidaDST('mexicoSumar')
+                        }
+                        else {
+                            // No estoy en Mexico
+                            // mensaje q hay dst y hay q sumar
+                            setValidaDST('mundoAvisar')
+                        }
                     }
                 }
             }
