@@ -750,514 +750,561 @@ function ZmanimView(props) {
                         <br /><br />
 
                         <IonText>Para asegurar la precisión de nuestros horarios, solo calculamos hasta un año atrás y adelante de la fecha actual.</IonText>
+
+                        {/* <br /><br />
+
+                        <IonText>Error Code: 424</IonText> */}
                     </>
                     :
 
-                    loading ? <Loading /> :
+                    props.a.ErrMsg != null ?
                         <>
-                            <IonText className='locationName'>Ubicacion: </IonText> <IonText color='tertiary' className='locationName'>{locationName}</IonText>
-                            <br />
+                            <IonText className='ion-text-center' color='danger'><b>Ocurrio un error, intenta de nuevo por favor.</b></IonText>
 
-                            {
-                                verano && !avisaDST ?
-                                    <><br /><IonText className='small' color='danger'>Contemplamos horario de verano</IonText><br /></>
-                                    : null
-                            }
+                            <br /><br />
 
-                            {
-                                avisaDST ?
-                                    <><IonText className='small' color='danger'>No tenemos informacion de horario de verano para tu ubicacion, en caso de aplicarse sumar una hora a todos los horarios</IonText><br /><br /></>
-                                    : null
-                            }
+                            <IonText>Error Code: 414</IonText>
+                        </>
+                        :
 
-                            <div className='titulo'>
+                        loading ? <Loading /> :
+                            <>
+                                <IonText className='locationName'>Ubicacion: </IonText> <IonText color='tertiary' className='locationName'>{locationName}</IonText>
                                 <br />
-                                {props.a.Time ? `${getDayEspanol(props.a.Time.Weekday)}` : null} {Number(props.date.slice(8, props.date.length))} de {getMonthName(props.date.slice(5, 7) - 1)}
-                                <br />
-                                {/* {props.a.Time ? `${props.a.Time.DateJewishShort}` : null} */}
 
-                                {props.calStructureHebrew ?
-                                    props.a.Time ?
-                                        props.calStructureHebrew[Number(props.date.slice(8, props.date.length))] != undefined ? `${props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hd} de ${meses[props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hm] ? meses[props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hm] : props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hm}` : null
-                                        : null
-                                    : null}
-                            </div>
-
-                            <br />
-
-                            <div>
-                                {/* {perasha2 ? <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}</IonText></b></> : null} */}
                                 {
-                                    perasha2 ?
-                                        extra == 'Shabat Parah' || extra == 'Shabat HaJodesh' || extra == 'Shabat Zajor' || extra == 'Shabat Shekalim' ?
-                                            <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}-{extra}</IonText></b></>
-                                            : <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}</IonText></b></>
+                                    verano && !avisaDST ?
+                                        <><br /><IonText className='small' color='danger'>Contemplamos horario de verano</IonText><br /></>
                                         : null
                                 }
-                            </div>
 
-                            <div>
-                                {props.a.Time ? <><IonText className='small'>Daf Hayomi: <b><br /><IonText className="perasha">{props.a.Time.DafYomi}</IonText></b></IonText><br /></> : null}
-                            </div>
+                                {
+                                    avisaDST ?
+                                        <><IonText className='small' color='danger'>No tenemos informacion de horario de verano para tu ubicacion, en caso de aplicarse sumar una hora a todos los horarios</IonText><br /><br /></>
+                                        : null
+                                }
 
-                            {
-                                extra ?
-                                    extra.slice(0, 5) == 'Ayuno' ?
-                                        <>
-                                            <div>
-                                                <br />
-                                                {extra ? <><b><IonText className="extra" color='danger'>{extra}</IonText></b><br /></> : null}
-                                            </div>
-                                        </>
-                                        :
-                                        <>
-                                            <div>
-                                                {
-                                                    extra ?
-                                                        extra.indexOf('|') != -1 ?
-                                                            <>
-                                                                <b><IonText className="extra">{extra.slice(0, extra.indexOf('|'))}</IonText></b><br />
-                                                                <b><IonText className="extra" color='success'>{extra.slice(extra.indexOf('|') + 1, extra.length)}</IonText></b>
-                                                            </>
-                                                            :
+                                <div className='titulo'>
+                                    <br />
+                                    {props.a.Time ? `${getDayEspanol(props.a.Time.Weekday)}` : null} {Number(props.date.slice(8, props.date.length))} de {getMonthName(props.date.slice(5, 7) - 1)}
+                                    <br />
+                                    {/* {props.a.Time ? `${props.a.Time.DateJewishShort}` : null} */}
 
-                                                            extra == 'Leil Selijot' ?
+                                    {props.calStructureHebrew ?
+                                        props.a.Time ?
+                                            props.calStructureHebrew[Number(props.date.slice(8, props.date.length))] != undefined ? `${props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hd} de ${meses[props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hm] ? meses[props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hm] : props.calStructureHebrew[Number(props.date.slice(8, props.date.length))].hm}` : null
+                                            : null
+                                        : null}
+                                </div>
+
+                                <br />
+
+                                <div>
+                                    {/* {perasha2 ? <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}</IonText></b></> : null} */}
+                                    {
+                                        perasha2 ?
+                                            extra == 'Shabat Parah' || extra == 'Shabat HaJodesh' || extra == 'Shabat Zajor' || extra == 'Shabat Shekalim' ?
+                                                <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}-{extra}</IonText></b></>
+                                                : <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}</IonText></b></>
+                                            : null
+                                    }
+                                </div>
+
+                                <div>
+                                    {props.a.Time ? <><IonText className='small'>Daf Hayomi: <b><br /><IonText className="perasha">{props.a.Time.DafYomi}</IonText></b></IonText><br /></> : null}
+                                </div>
+
+                                {
+                                    extra ?
+                                        extra.slice(0, 5) == 'Ayuno' ?
+                                            <>
+                                                <div>
+                                                    <br />
+                                                    {extra ? <><b><IonText className="extra" color='danger'>{extra}</IonText></b><br /></> : null}
+                                                </div>
+                                            </>
+                                            :
+                                            <>
+                                                <div>
+                                                    {
+                                                        extra ?
+                                                            extra.indexOf('|') != -1 ?
                                                                 <>
-                                                                    <b><IonText className="extra">Primer dia Selijot Ashkenazim</IonText></b><br />
+                                                                    <b><IonText className="extra">{extra.slice(0, extra.indexOf('|'))}</IonText></b><br />
+                                                                    <b><IonText className="extra" color='success'>{extra.slice(extra.indexOf('|') + 1, extra.length)}</IonText></b>
                                                                 </>
-
                                                                 :
-                                                                extra == "Ta'anit Bejorot" ?
+
+                                                                extra == 'Leil Selijot' ?
                                                                     <>
-                                                                        <b><IonText className="extra">Ayuno Primogenitos</IonText></b><br />
+                                                                        <b><IonText className="extra">Primer dia Selijot Ashkenazim</IonText></b><br />
                                                                     </>
 
                                                                     :
-                                                                    <>
-                                                                        {
-                                                                            extra == 'Shabat Parah' || extra == 'Shabat HaJodesh' || extra == 'Shabat Zajor' || extra == 'Shabat Shekalim' ? null
-                                                                                : <><b><IonText className="extra">{extra}</IonText></b><br /></>
-                                                                        }
-                                                                    </>
-                                                        : null
-                                                }
-                                            </div>
-                                        </>
-                                    : null
-                            }
+                                                                    extra == "Ta'anit Bejorot" ?
+                                                                        <>
+                                                                            <b><IonText className="extra">Ayuno Primogenitos</IonText></b><br />
+                                                                        </>
 
-                            <div>
-                                {extra2 ? <><b><IonText className="extra small">{extra2}</IonText></b><br /></> : null}
+                                                                        :
+                                                                        <>
+                                                                            {
+                                                                                extra == 'Shabat Parah' || extra == 'Shabat HaJodesh' || extra == 'Shabat Zajor' || extra == 'Shabat Shekalim' ? null
+                                                                                    : <><b><IonText className="extra">{extra}</IonText></b><br /></>
+                                                                            }
+                                                                        </>
+                                                            : null
+                                                    }
+                                                </div>
+                                            </>
+                                        : null
+                                }
+
+                                <div>
+                                    {extra2 ? <><b><IonText className="extra small">{extra2}</IonText></b><br /></> : null}
+
+                                    <div>
+                                        {
+                                            props.a.Time ?
+                                                props.a.Time.IsRoshChodesh ?
+                                                    <><b><IonText className="extra small">Halel Salteado</IonText></b></>
+
+                                                    : props.a.Time.IsCholHamoed && props.a.Time.Weekday != 'Shabbos' ?
+                                                        <><b><IonText className="extra small" color='danger'>No se pone Tefilim</IonText></b><br /></>
+                                                        : null
+                                                : null
+                                        }
+
+                                        {
+                                            extra ?
+                                                props.a.Time ?
+                                                    (props.a.Time.ParshaAndHoliday == "חול המועד" || props.a.Time.ParshaAndHoliday == 'שביעי של פסח' || props.a.Time.ParshaAndHoliday == 'שמיני של פסח') && extra.includes('Pesaj') ?
+                                                        <><b><IonText className="extra small">Halel Salteado</IonText></b></>
+                                                        : null
+                                                    : null
+                                                : null
+                                        }
+                                    </div>
+                                </div>
 
                                 <div>
                                     {
-                                        props.a.Time ?
-                                            props.a.Time.IsRoshChodesh ?
-                                                <><b><IonText className="extra small">Halel Salteado</IonText></b></>
-
-                                                : props.a.Time.IsCholHamoed && props.a.Time.Weekday != 'Shabbos' ?
-                                                    <><b><IonText className="extra small" color='danger'>No se pone Tefilim</IonText></b><br /></>
+                                        extra ?
+                                            props.a.Time ?
+                                                props.a.Time.ParshaAndHoliday == 'סוכות' || props.a.Time.ParshaAndHoliday == 'שמיני עצרת' || props.a.Time.ParshaAndHoliday == 'שמחת תורה' || props.a.Time.ParshaAndHoliday == 'חנוכה' || extra == 'Pesaj 1' || extra == 'Pesaj 2' || extra.includes('Sukot') ?
+                                                    <><b><IonText className="extra small">Halel Completo</IonText></b><br /></>
                                                     : null
+                                                : null
                                             : null
                                     }
 
                                     {
                                         extra ?
                                             props.a.Time ?
-                                                (props.a.Time.ParshaAndHoliday == "חול המועד" || props.a.Time.ParshaAndHoliday == 'שביעי של פסח' || props.a.Time.ParshaAndHoliday == 'שמיני של פסח') && extra.includes('Pesaj') ?
-                                                    <><b><IonText className="extra small">Halel Salteado</IonText></b></>
+                                                props.a.Time.Omer == 49 || extra == 'Sukot 6' ?
+                                                    <><b><IonText className="extra small">En la noche desvelada</IonText></b><br /></>
                                                     : null
                                                 : null
                                             : null
                                     }
+
+                                    {
+                                        extra ?
+                                            props.a.Time ?
+                                                extra.includes('Sukot') || extra.includes('Hoshana Raba') && !extra.includes('Erev') && props.a.Time.Weekday != 'Shabbos' ?
+                                                    <><b><IonText className="extra small" color='success'>Beraja de lulab</IonText></b><br /></>
+                                                    : null
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.ParshaAndHoliday == 'פורים' ?
+                                                <><b><IonText className="extra small" color='success'>Lectura de Meguila</IonText></b><br /></>
+                                                : props.a.Time.ParshaAndHoliday == 'תענית אסתר' ?
+                                                    <><b><IonText className="extra small" color='success'>En la noche lectura de Meguila</IonText></b><br /></>
+                                                    : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.ParshaAndHoliday == 'פורים' || props.a.Time.ParshaAndHoliday == 'חנוכה' ?
+                                                <><b><IonText className="extra small">Al Hanisim</IonText></b> <br /></>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            (props.a.Time.ParshaAndHoliday == "חול המועד" || diceAnna) && props.a.Time.Weekday != 'Shabbos' && !props.a.Time.IsYomTov && !props.a.Time.IsRoshChodesh ?
+                                                <><b><IonText className="extra small" color='danger'>No se dice Anna (tajanun)</IonText></b> <br /></>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        diceHamelej ?
+                                            <><><b><IonText className="extra small" color='danger'>Hamelej Hakadosh</IonText></b> <br /></></>
+                                            : null
+                                    }
+
+                                    {
+                                        izcor ?
+                                            <><><b><IonText className="extra small">Izcor</IonText></b></></>
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.IsErevYomTov && (new Date(props.date).getDay() == 3 || new Date(props.date).getDay() == 4) ?
+                                                <><><b><IonText className="extra small" color='danger'>Erub Tabshilin</IonText></b></></>
+                                                : null
+                                            : null
+                                    }
                                 </div>
-                            </div>
 
-                            <div>
-                                {
-                                    extra ?
+                                <div>
+                                    {
                                         props.a.Time ?
-                                            props.a.Time.ParshaAndHoliday == 'סוכות' || props.a.Time.ParshaAndHoliday == 'שמיני עצרת' || props.a.Time.ParshaAndHoliday == 'שמחת תורה' || props.a.Time.ParshaAndHoliday == 'חנוכה' || extra == 'Pesaj 1' || extra == 'Pesaj 2' || extra.includes('Sukot') ?
-                                                <><b><IonText className="extra small">Halel Completo</IonText></b><br /></>
-                                                : null
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    extra ?
-                                        props.a.Time ?
-                                            props.a.Time.Omer == 49 || extra == 'Sukot 6' ?
-                                                <><b><IonText className="extra small">En la noche desvelada</IonText></b><br /></>
-                                                : null
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    extra ?
-                                        props.a.Time ?
-                                            extra.includes('Sukot') || extra.includes('Hoshana Raba') && !extra.includes('Erev') && props.a.Time.Weekday != 'Shabbos' ?
-                                                <><b><IonText className="extra small" color='success'>Beraja de lulab</IonText></b><br /></>
-                                                : null
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.ParshaAndHoliday == 'פורים' ?
-                                            <><b><IonText className="extra small" color='success'>Lectura de Meguila</IonText></b><br /></>
-                                            : props.a.Time.ParshaAndHoliday == 'תענית אסתר' ?
-                                                <><b><IonText className="extra small" color='success'>En la noche lectura de Meguila</IonText></b><br /></>
-                                                : null
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.ParshaAndHoliday == 'פורים' || props.a.Time.ParshaAndHoliday == 'חנוכה' ?
-                                            <><b><IonText className="extra small">Al Hanisim</IonText></b> <br /></>
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        (props.a.Time.ParshaAndHoliday == "חול המועד" || diceAnna) && props.a.Time.Weekday != 'Shabbos' && !props.a.Time.IsYomTov && !props.a.Time.IsRoshChodesh ?
-                                            <><b><IonText className="extra small" color='danger'>No se dice Anna (tajanun)</IonText></b> <br /></>
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    diceHamelej ?
-                                        <><><b><IonText className="extra small" color='danger'>Hamelej Hakadosh</IonText></b> <br /></></>
-                                        : null
-                                }
-
-                                {
-                                    izcor ?
-                                        <><><b><IonText className="extra small">Izcor</IonText></b></></>
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.IsErevYomTov && (new Date(props.date).getDay() == 3 || new Date(props.date).getDay() == 4) ?
-                                            <><><b><IonText className="extra small" color='danger'>Erub Tabshilin</IonText></b></></>
-                                            : null
-                                        : null
-                                }
-                            </div>
-
-                            <div>
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.TonightIsYomTov && props.a.Time.ParshaAndHoliday == "פסח" ?
-                                            <>
-                                                <IonText className="omer" color='success'>En la noche Omer {props.a.Time ? `${props.a.Time.Omer + 1}` : null}</IonText>
-                                            </>
-
-                                            : props.a.Time.Omer == 49 ?
+                                            props.a.Time.TonightIsYomTov && props.a.Time.ParshaAndHoliday == "פסח" ?
                                                 <>
-                                                    <IonText className="omer">Omer {props.a.Time.Omer}</IonText>
+                                                    <IonText className="omer" color='success'>En la noche Omer {props.a.Time ? `${props.a.Time.Omer + 1}` : null}</IonText>
                                                 </>
 
-                                                : props.a.Time.Omer >= 1 ?
+                                                : props.a.Time.Omer == 49 ?
                                                     <>
                                                         <IonText className="omer">Omer {props.a.Time.Omer}</IonText>
-                                                        <br />
-                                                        <IonText className="omer" color='success'>En la noche {props.a.Time ? `${props.a.Time.Omer + 1}` : null}</IonText>
                                                     </>
 
-                                                    : null
-                                        : null
-                                }
-                            </div>
+                                                    : props.a.Time.Omer >= 1 ?
+                                                        <>
+                                                            <IonText className="omer">Omer {props.a.Time.Omer}</IonText>
+                                                            <br />
+                                                            <IonText className="omer" color='success'>En la noche {props.a.Time ? `${props.a.Time.Omer + 1}` : null}</IonText>
+                                                        </>
 
-                            {
-                                props.a.Time ?
-                                    props.a.Time.IsErevPesach ?
-                                        <>
-                                            <br />
-
-                                            <h3>Horarios de Pesaj</h3>
-
-                                            <div className='horariosPesaj ion-text-start horarios'>
-                                                <IonText color='horasyo'>Fin de comer jametz</IonText>
-
-                                                <br />
-
-                                                {
-                                                    verano ?
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].abrilVerano}</IonText> </>
-                                                        :
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].marzo}</IonText> </> : <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].abril}</IonText> </>
-                                                }
-
-                                                <br /><br />
-
-                                                <IonText color='horasyo'>Fin deshacerse y venta de jametz</IonText>
-
-                                                <br />
-                                                {
-                                                    verano ?
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].abrilVerano}</IonText> </>
-                                                        :
-                                                        props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].marzo}</IonText> </> : <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].abril}</IonText> </>
-                                                }
-
-                                                <br /><br />
-
-                                                <IonText color='horasyo'>Jatzot Laila (comer aficoman)</IonText>
-
-                                                <br />
-
-                                                {/* <IonText>{props.a.Zman ? `${formatZman3(props.a.Zman.Midnight)}` : null}</IonText> */}
-                                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Midnight)} </> : null}</IonText> */}
-                                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Midnight)} </> : null}</IonText> */}
-                                                <IonText>{formatZmanMio(Midnight)}</IonText>
-
-                                            </div>
-                                        </>
-                                        : null
-                                    : null
-                            }
-
-                            <br />
-
-                            <div className='ion-text-start horarios'>
-                                <IonText color='horasyo'>Amanecer - Alot Hashajar</IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Dawn72fix)}` : `${formatZman3(props.a.Zman.Dawn72fix)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Dawn72fix)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Dawn72fix)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(Dawn72fix)}</IonText>
-
-                                <br /><br />
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.IsFastDay ?
-                                            <>
-                                                <IonText className='big' color='danger'>Ayuno Comienza</IonText>
-                                                <br />
-                                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Dawn72fix)}` : `${formatZman3(props.a.Zman.Dawn72fix)}` : null}</IonText> */}
-                                                {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Dawn72fix)} </> : null}</IonText> */}
-                                                <IonText>{formatZmanMio(Dawn72fix)}</IonText>
-
-                                                <br /> <br />
-                                            </>
+                                                        : null
                                             : null
-                                        : null
-                                }
-
-                                <IonText color='horasyo'>Horario Talit y Tefilin </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Yakir110)}` : `${formatZman3(props.a.Zman.Yakir110)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Yakir110)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Yakir110)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(Yakir110)}</IonText>
-
-                                <br /><br />
-
-                                <IonText className='big' color='danger'>Salida del Sol </IonText>
-                                {/* este q salga mas grande */}
-                                <br />
-                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunriseLevel)}` : `${formatZman3(props.a.Zman.SunriseLevel)}` : null}</IonText> */}
-                                {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunriseLevel)} </> : null}</IonText> */}
-                                <IonText className='big'>{formatZmanMio(SunriseLevel)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Fin Keriat Shema 1° </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShemaMA72fix)}` : `${formatZman3(props.a.Zman.ShemaMA72fix)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShemaMA72fix)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShemaMA72fix)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(ShemaMA72fix)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Fin Keriat Shema 2° </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShemaGra)}` : `${formatZman3(props.a.Zman.ShemaGra)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShemaGra)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShemaGra)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(ShemaGra)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Zman Tefila 1° </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShachrisMA72fix)}` : `${formatZman3(props.a.Zman.ShachrisMA72fix)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShachrisMA72fix)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShachrisMA72fix)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(ShachrisMA72fix)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Zman Tefila 2° </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShachrisGra)}` : `${formatZman3(props.a.Zman.ShachrisGra)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShachrisGra)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShachrisGra)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(ShachrisGra)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Medio Dia - Jatzot </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Midday)}` : `${formatZman3(props.a.Zman.Midday)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Midday)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Midday)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(Midday)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Minja Guedola </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Mincha30fix)}` : `${formatZman3(props.a.Zman.Mincha30fix)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Mincha30fix)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Mincha30fix)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(Mincha30fix)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Minja Ketana </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.KetanaGra)}` : `${formatZman3(props.a.Zman.KetanaGra)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.KetanaGra)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.KetanaGra)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(KetanaGra)}</IonText>
-
-                                <br /><br />
-
-                                <IonText color='horasyo'>Plag Haminja </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.PlagGra)}` : `${formatZman3(props.a.Zman.PlagGra)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.PlagGra)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.PlagGra)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(PlagGra)}</IonText>
-
-                                <br /><br />
+                                    }
+                                </div>
 
                                 {
                                     props.a.Time ?
-                                        props.a.Time.Weekday == 'Friday' ?
+                                        props.a.Time.IsErevPesach ?
                                             <>
-                                                {
-                                                    props.a.Time.IsYomTov ? <><IonText className='big' color='danger'>Encendido Shabat y Yom Tob &#x1F56F;&#x1F56F;</IonText></> : <><IonText className='big' color='danger'>Encendido Shabat &#x1F56F;&#x1F56F;</IonText></>
-                                                }
-
                                                 <br />
 
-                                                <IonText className='big'>{candles}</IonText>
+                                                <h3>Horarios de Pesaj</h3>
 
-                                                <br />
-
-                                                <IonText className='horarios' color='danger'>Horario de Jizuk</IonText>
-
-                                                <br />
-
-                                                <IonText className='horarios'>{candlesJizuk}</IonText>
-
-                                                <br /><br />
-                                            </>
-
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.TonightIsYomTov && props.a.Time.Weekday != 'Friday' ?
-                                            <>
-                                                <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
-
-                                                <br />
-
-                                                <IonText className='big'>{candles}</IonText>
-
-                                                <br /> <br />
-                                            </>
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    fastBegins ?
-                                        <>
-                                            <IonText className='big' color='danger'>Ayuno Comienza</IonText>
-
-                                            <br />
-
-                                            <IonText className='big'>{fastBegins}</IonText>
-
-                                            <br /><br />
-                                        </>
-                                        : null
-                                }
-
-                                <IonText className='big' color='danger'>Puesta del Sol - Shekia </IonText>
-                                <br />
-                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunsetLevel)}` : `${formatZman3(props.a.Zman.SunsetLevel)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(SunsetLevel)}</IonText>
-
-                                <br /><br />
-
-                                {
-                                    fastEnds ?
-                                        !kipur ?
-                                            <>
-                                                <IonText className='big' color='success'>Fin Ayuno 45 min</IonText>
-
-                                                <br />
-
-                                                <IonText className='big'>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
-
-                                                <br />
-
-                                                {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
-                                            {props.a.Zman ? <> <IonText className='small'>&#128073; En caso de necesidad: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(30, 'minute').$d.toString())} </IonText></> : null} */}
-
-                                                <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br />
-                                                <IonText className='small'>&#128073; En caso de necesidad: {formatZmanMio(dayjs(SunsetLevel).add(30, 'minute').$d.toString())} </IonText>
-
-                                                <br /><br />
-                                            </>
-                                            :
-                                            <>
-                                                <IonText className='big' color='success'>Fin Ayuno y Yom Tob 45 min</IonText>
-
-                                                <br />
-
-                                                <IonText className='big'>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
-
-                                                <br />
-
-                                                {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
-                                            {props.a.Zman ? <> <IonText className='small'>&#128073; En caso de necesidad: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(30, 'minute').$d.toString())} </IonText></> : null} */}
-
-                                                <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(40, 'minute').$d.toString())} </IonText> <br />
-                                                <br />
-                                            </>
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.Weekday == 'Shabbos' ?
-                                            !props.a.Time.TonightIsYomTov ?
-                                                <>
-                                                    <IonText className='big' color='success'>Fin Shabat 45 min</IonText>
+                                                <div className='horariosPesaj ion-text-start horarios'>
+                                                    <IonText color='horasyo'>Fin de comer jametz</IonText>
 
                                                     <br />
 
-                                                    <IonText className='big'>{habdala}</IonText>
+                                                    {
+                                                        verano ?
+                                                            props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].abrilVerano}</IonText> </>
+                                                            :
+                                                            props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].marzo}</IonText> </> : <> <IonText>{horariosPesajComer[Number(props.date.slice(8, 10))].abril}</IonText> </>
+                                                    }
+
+                                                    <br /><br />
+
+                                                    <IonText color='horasyo'>Fin deshacerse y venta de jametz</IonText>
+
+                                                    <br />
+                                                    {
+                                                        verano ?
+                                                            props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].marzoVerano}</IonText> </> : <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].abrilVerano}</IonText> </>
+                                                            :
+                                                            props.date.slice(5, 7) == '03' ? <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].marzo}</IonText> </> : <> <IonText>{horariosPesajVender[Number(props.date.slice(8, 10))].abril}</IonText> </>
+                                                    }
+
+                                                    <br /><br />
+
+                                                    <IonText color='horasyo'>Jatzot Laila (comer aficoman)</IonText>
+
+                                                    <br />
+
+                                                    {/* <IonText>{props.a.Zman ? `${formatZman3(props.a.Zman.Midnight)}` : null}</IonText> */}
+                                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Midnight)} </> : null}</IonText> */}
+                                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Midnight)} </> : null}</IonText> */}
+                                                    <IonText>{formatZmanMio(Midnight)}</IonText>
+
+                                                </div>
+                                            </>
+                                            : null
+                                        : null
+                                }
+
+                                <br />
+
+                                <div className='ion-text-start horarios'>
+                                    <IonText color='horasyo'>Amanecer - Alot Hashajar</IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Dawn72fix)}` : `${formatZman3(props.a.Zman.Dawn72fix)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Dawn72fix)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Dawn72fix)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(Dawn72fix)}</IonText>
+
+                                    <br /><br />
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.IsFastDay ?
+                                                <>
+                                                    <IonText className='big' color='danger'>Ayuno Comienza</IonText>
+                                                    <br />
+                                                    {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Dawn72fix)}` : `${formatZman3(props.a.Zman.Dawn72fix)}` : null}</IonText> */}
+                                                    {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Dawn72fix)} </> : null}</IonText> */}
+                                                    <IonText>{formatZmanMio(Dawn72fix)}</IonText>
+
+                                                    <br /> <br />
+                                                </>
+                                                : null
+                                            : null
+                                    }
+
+                                    <IonText color='horasyo'>Horario Talit y Tefilin </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Yakir110)}` : `${formatZman3(props.a.Zman.Yakir110)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Yakir110)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Yakir110)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(Yakir110)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText className='big' color='danger'>Salida del Sol </IonText>
+                                    {/* este q salga mas grande */}
+                                    <br />
+                                    {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunriseLevel)}` : `${formatZman3(props.a.Zman.SunriseLevel)}` : null}</IonText> */}
+                                    {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunriseLevel)} </> : null}</IonText> */}
+                                    <IonText className='big'>{formatZmanMio(SunriseLevel)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Fin Keriat Shema 1° </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShemaMA72fix)}` : `${formatZman3(props.a.Zman.ShemaMA72fix)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShemaMA72fix)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShemaMA72fix)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(ShemaMA72fix)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Fin Keriat Shema 2° </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShemaGra)}` : `${formatZman3(props.a.Zman.ShemaGra)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShemaGra)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShemaGra)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(ShemaGra)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Zman Tefila 1° </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShachrisMA72fix)}` : `${formatZman3(props.a.Zman.ShachrisMA72fix)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShachrisMA72fix)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShachrisMA72fix)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(ShachrisMA72fix)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Zman Tefila 2° </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.ShachrisGra)}` : `${formatZman3(props.a.Zman.ShachrisGra)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.ShachrisGra)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.ShachrisGra)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(ShachrisGra)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Medio Dia - Jatzot </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Midday)}` : `${formatZman3(props.a.Zman.Midday)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Midday)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Midday)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(Midday)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Minja Guedola </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Mincha30fix)}` : `${formatZman3(props.a.Zman.Mincha30fix)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Mincha30fix)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Mincha30fix)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(Mincha30fix)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Minja Ketana </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.KetanaGra)}` : `${formatZman3(props.a.Zman.KetanaGra)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.KetanaGra)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.KetanaGra)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(KetanaGra)}</IonText>
+
+                                    <br /><br />
+
+                                    <IonText color='horasyo'>Plag Haminja </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.PlagGra)}` : `${formatZman3(props.a.Zman.PlagGra)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.PlagGra)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.PlagGra)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(PlagGra)}</IonText>
+
+                                    <br /><br />
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.Weekday == 'Friday' ?
+                                                <>
+                                                    {
+                                                        props.a.Time.IsYomTov ? <><IonText className='big' color='danger'>Encendido Shabat y Yom Tob &#x1F56F;&#x1F56F;</IonText></> : <><IonText className='big' color='danger'>Encendido Shabat &#x1F56F;&#x1F56F;</IonText></>
+                                                    }
+
+                                                    <br />
+
+                                                    <IonText className='big'>{candles}</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='horarios' color='danger'>Horario de Jizuk</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='horarios'>{candlesJizuk}</IonText>
+
+                                                    <br /><br />
+                                                </>
+
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.TonightIsYomTov && props.a.Time.Weekday != 'Friday' ?
+                                                <>
+                                                    <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='big'>{candles}</IonText>
+
+                                                    <br /> <br />
+                                                </>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        fastBegins ?
+                                            <>
+                                                <IonText className='big' color='danger'>Ayuno Comienza</IonText>
+
+                                                <br />
+
+                                                <IonText className='big'>{fastBegins}</IonText>
+
+                                                <br /><br />
+                                            </>
+                                            : null
+                                    }
+
+                                    <IonText className='big' color='danger'>Puesta del Sol - Shekia </IonText>
+                                    <br />
+                                    {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.SunsetLevel)}` : `${formatZman3(props.a.Zman.SunsetLevel)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.SunsetLevel)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(SunsetLevel)}</IonText>
+
+                                    <br /><br />
+
+                                    {
+                                        fastEnds ?
+                                            !kipur ?
+                                                <>
+                                                    <IonText className='big' color='success'>Fin Ayuno 45 min</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='big'>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
+
+                                                    <br />
+
+                                                    {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
+                                            {props.a.Zman ? <> <IonText className='small'>&#128073; En caso de necesidad: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(30, 'minute').$d.toString())} </IonText></> : null} */}
+
+                                                    <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br />
+                                                    <IonText className='small'>&#128073; En caso de necesidad: {formatZmanMio(dayjs(SunsetLevel).add(30, 'minute').$d.toString())} </IonText>
+
+                                                    <br /><br />
+                                                </>
+                                                :
+                                                <>
+                                                    <IonText className='big' color='success'>Fin Ayuno y Yom Tob 45 min</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='big'>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
+
+                                                    <br />
+
+                                                    {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
+                                            {props.a.Zman ? <> <IonText className='small'>&#128073; En caso de necesidad: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(30, 'minute').$d.toString())} </IonText></> : null} */}
+
+                                                    <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(40, 'minute').$d.toString())} </IonText> <br />
+                                                    <br />
+                                                </>
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.Weekday == 'Shabbos' ?
+                                                !props.a.Time.TonightIsYomTov ?
+                                                    <>
+                                                        <IonText className='big' color='success'>Fin Shabat 45 min</IonText>
+
+                                                        <br />
+
+                                                        <IonText className='big'>{habdala}</IonText>
+
+                                                        <br />
+
+                                                        <IonText> &#128073; Otras opiniones, 5 minutos menos</IonText>
+
+                                                        <br /><br />
+                                                    </>
+
+                                                    :
+                                                    <>
+                                                        {/* <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='big'>{candles}</IonText>
+
+                                                    <br /> <br /> */}
+                                                    </>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.IsYomTov && !props.a.Time.TonightIsYomTov && !props.a.Time.IsYomKipper && props.a.Time.Weekday != 'Friday' ?
+                                                <>
+                                                    <IonText className='big' color='success'>Fin Yom Tob 45 min</IonText>
+
+                                                    <br />
+
+                                                    {/* <IonText className='big'>{habdala}</IonText> */}
+                                                    <IonText>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
+
 
                                                     <br />
 
@@ -1265,74 +1312,41 @@ function ZmanimView(props) {
 
                                                     <br /><br />
                                                 </>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.Weekday != 'Shabbos' ?
+                                                <>
+                                                    <IonText color='horasyo'>Salida de Estrellas - Tzet Hakojabim 45 min</IonText>
+                                                    <br />
+                                                    {/* <IonText>{props.a.Zman ? `${formatZman3(dayjs(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())}` : null}</IonText> */}
+                                                    <IonText>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
+                                                    <br /><br />
+
+                                                    {
+                                                        props.a.Time.IsYomKipper ?
+                                                            <>
+                                                                <IonText className='big' color='success'>Rabenu Tam</IonText>
+                                                                <br />
+                                                                <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
+                                                            </>
+                                                            :
+                                                            <>
+                                                                <IonText color='horasyo'>Rabenu Tam</IonText>
+                                                                <br />
+                                                                <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
+                                                            </>
+                                                    }
+
+                                                    <br /><br />
+                                                </>
 
                                                 :
                                                 <>
-                                                    {/* <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
-
-                                                    <br />
-
-                                                    <IonText className='big'>{candles}</IonText>
-
-                                                    <br /> <br /> */}
-                                                </>
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.IsYomTov && !props.a.Time.TonightIsYomTov && !props.a.Time.IsYomKipper && props.a.Time.Weekday != 'Friday' ?
-                                            <>
-                                                <IonText className='big' color='success'>Fin Yom Tob 45 min</IonText>
-
-                                                <br />
-
-                                                {/* <IonText className='big'>{habdala}</IonText> */}
-                                                <IonText>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
-
-
-                                                <br />
-
-                                                <IonText> &#128073; Otras opiniones, 5 minutos menos</IonText>
-
-                                                <br /><br />
-                                            </>
-                                            : null
-                                        : null
-                                }
-
-                                {
-                                    props.a.Time ?
-                                        props.a.Time.Weekday != 'Shabbos' ?
-                                            <>
-                                                <IonText color='horasyo'>Salida de Estrellas - Tzet Hakojabim 45 min</IonText>
-                                                <br />
-                                                {/* <IonText>{props.a.Zman ? `${formatZman3(dayjs(props.a.Zman.SunsetLevel).add(45, 'minute').$d.toString())}` : null}</IonText> */}
-                                                <IonText>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
-                                                <br /><br />
-
-                                                {
-                                                    props.a.Time.IsYomKipper ?
-                                                        <>
-                                                            <IonText className='big' color='success'>Rabenu Tam</IonText>
-                                                            <br />
-                                                            <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
-                                                        </>
-                                                        :
-                                                        <>
-                                                            <IonText color='horasyo'>Rabenu Tam</IonText>
-                                                            <br />
-                                                            <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
-                                                        </>
-                                                }
-
-                                                <br /><br />
-                                            </>
-
-                                            :
-                                            <>
-                                                {/* <IonText color='success'>Salida de Estrellas - Tzet Hakojabim </IonText>
+                                                    {/* <IonText color='success'>Salida de Estrellas - Tzet Hakojabim </IonText>
 
                                 <br />
 
@@ -1340,27 +1354,27 @@ function ZmanimView(props) {
 
                                 <br /><br /> */}
 
-                                                <IonText className='big' color='success'>Rabenu Tam</IonText>
-                                                <br />
-                                                {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Night72fixLevel)}` : `${formatZman3(props.a.Zman.Night72fixLevel)}` : null}</IonText> */}
-                                                {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Night72fixLevel)} </> : null}</IonText> */}
-                                                <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
+                                                    <IonText className='big' color='success'>Rabenu Tam</IonText>
+                                                    <br />
+                                                    {/* <IonText className='big'>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Night72fixLevel)}` : `${formatZman3(props.a.Zman.Night72fixLevel)}` : null}</IonText> */}
+                                                    {/* <IonText className='big'>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Night72fixLevel)} </> : null}</IonText> */}
+                                                    <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
 
-                                                <br /><br />
-                                            </>
+                                                    <br /><br />
+                                                </>
 
-                                        : null
-                                }
+                                            : null
+                                    }
 
-                                <IonText color='horasyo'>Media Noche - Jatzot Laila </IonText>
-                                <br />
-                                {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Midnight)}` : `${formatZman3(props.a.Zman.Midnight)}` : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Midnight)} </> : null}</IonText> */}
-                                {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Midnight)} </> : null}</IonText> */}
-                                <IonText>{formatZmanMio(Midnight)}</IonText>
+                                    <IonText color='horasyo'>Media Noche - Jatzot Laila </IonText>
+                                    <br />
+                                    {/* <IonText>{props.a.Zman ? props.validaDST == 'mexicoSumar' ? `${formatZman2(props.a.Zman.Midnight)}` : `${formatZman3(props.a.Zman.Midnight)}` : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZmanMio(props.a.Zman.Midnight)} </> : null}</IonText> */}
+                                    {/* <IonText>{props.a.Zman ? <> {formatZman(props.a.Zman.Midnight)} </> : null}</IonText> */}
+                                    <IonText>{formatZmanMio(Midnight)}</IonText>
 
-                            </div>
-                        </>
+                                </div>
+                            </>
             }
         </>
     )
