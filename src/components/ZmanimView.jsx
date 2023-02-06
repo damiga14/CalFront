@@ -47,8 +47,9 @@ let misExtras = [
 ]
 
 let misExtrasEspanol = [
-    { "monthNumber": getFirstSunday('2022', '4').getMonth() + 1, "date": getFirstSunday('2022', '4').getDate(), "event": "Comienza horario de Verano" },
-    { "monthNumber": getLastSunday('2022', '10').getMonth() + 1, "date": getLastSunday('2022', '10').getDate(), "event": "Comienza horario de Invierno" },
+    // aca comente porq ya no hay horario de verano, checar q todo siga sirviendo bien
+    // { "monthNumber": getFirstSunday('2022', '4').getMonth() + 1, "date": getFirstSunday('2022', '4').getDate(), "event": "Comienza horario de Verano" },
+    // { "monthNumber": getLastSunday('2022', '10').getMonth() + 1, "date": getLastSunday('2022', '10').getDate(), "event": "Comienza horario de Invierno" },
 ]
 
 let horariosPesajVender = []
@@ -445,12 +446,13 @@ function ZmanimView(props) {
             //     setVerano(true)
             // }
 
-            if (dayjs(props.date).$M + 1 > misExtrasEspanol[0].monthNumber || (dayjs(props.date).$M + 1 >= misExtrasEspanol[0].monthNumber && dayjs(props.date).$D >= misExtrasEspanol[0].date)) {
-                if (dayjs(props.date).$M + 1 < misExtrasEspanol[1].monthNumber || (dayjs(props.date).$M + 1 <= misExtrasEspanol[1].monthNumber && dayjs(props.date).$D < misExtrasEspanol[1].date)) {
-                    verano = true
-                    setVerano(true)
-                }
-            }
+            // aca comente porq ya no hay horario de verano, checar q todo siga sirviendo bien
+            // if (dayjs(props.date).$M + 1 > misExtrasEspanol[0].monthNumber || (dayjs(props.date).$M + 1 >= misExtrasEspanol[0].monthNumber && dayjs(props.date).$D >= misExtrasEspanol[0].date)) {
+            //     if (dayjs(props.date).$M + 1 < misExtrasEspanol[1].monthNumber || (dayjs(props.date).$M + 1 <= misExtrasEspanol[1].monthNumber && dayjs(props.date).$D < misExtrasEspanol[1].date)) {
+            //         verano = true
+            //         setVerano(true)
+            //     }
+            // }
         }
     }, [props.date, props?.a?.Zman])
 
@@ -649,7 +651,7 @@ function ZmanimView(props) {
                                 else {
                                     if (props.a2.data.items[i].title != 'Rosh Hashana LaBehemot') {
                                         if (props.a2.data.items[i].title.includes('observado')) { setExtra(props.a2.data.items[i].title.replace('(observado)', '')) }
-                                        else if (props.a2.data.items[i].title.includes('Erev')) { setExtra2(props.a2.data.items[i].title.replace('Erev', 'Visepra de ')) }
+                                        else if (props.a2.data.items[i].title.includes('Erev')) { setExtra2(props.a2.data.items[i].title.replace('Erev', 'Víspera de ')) }
                                         else if (props.a2.data.items[i].title.includes('Havdalah (45 min)')) { setExtra(props.a2.data.items[i].memo) }
                                         else { setExtra(props.a2.data.items[i].title) }
                                     }
@@ -660,7 +662,7 @@ function ZmanimView(props) {
                         }
                         else {
                             if (props.a2.data.items[i].title != 'Rosh Hashana LaBehemot') {
-                                if (props.a2.data.items[i].title.includes('Erev')) { setExtra2(props.a2.data.items[i].title.replace('Erev', 'Visepra de ')) }
+                                if (props.a2.data.items[i].title.includes('Erev')) { setExtra2(props.a2.data.items[i].title.replace('Erev', 'Víspera de ')) }
                                 else { setExtra2(props.a2.data.items[i].title) }
                             }
                         }
