@@ -684,7 +684,7 @@ function Cal() {
 
         axios.get(`${process.env.REACT_APP_BackURL}/api/v1/version`)
             .then((response) => {
-                if (Number(response.data.data[0].VersionNumber) > process.env.REACT_APP_Version) {
+                if (Number(response.data.data[0].VersionNumber) > Number(process.env.REACT_APP_Version)) {
                     setShowPopover3(true)
                 }
 
