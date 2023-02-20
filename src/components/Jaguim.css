@@ -1,0 +1,16 @@
+.levanaCard {
+  color: black;
+}
+
+.levanaTitle {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 29px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #fffca6;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: normal;
+  text-transform: none;
+}
