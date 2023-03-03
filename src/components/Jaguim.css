@@ -1,16 +1,12 @@
-.levanaCard {
-  color: black;
+.title {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
 }
 
-.levanaTitle {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  font-size: 29px;
-  letter-spacing: 2px;
-  word-spacing: 2px;
-  color: #fffca6;
-  font-weight: 700;
-  text-decoration: none;
-  font-style: italic;
-  font-variant: normal;
-  text-transform: none;
+.fiestas {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
