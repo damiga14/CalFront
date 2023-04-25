@@ -78,13 +78,11 @@ function Jaguim() {
                 if (temp1[i].title == 'Janucá: 1 vela') { temp1[i].date = temp1[i].date.slice(0, temp1[i].date.indexOf('T')) }
             }
 
-            temp2 = temp2.filter((item) => { return item.title != 'Rosh Hashana LaBehemot' })
-            temp2 = temp2.filter((item) => { return item.title != 'Leil Selijot' })
-            temp2 = temp2.filter((item) => { return item.title != 'Chag HaBanot' })
+            temp2 = temp2.filter((item) => { return item.title != 'Rosh Hashana LaBehemot' && item.title != 'Leil Selijot' && item.title != 'Chag HaBanot' })
 
             for (let i in temp3) {
                 if (temp3[i].memo.includes('Erev')) { temp3[i].memo = temp3[i].memo.replace('Erev', 'Vispera') }
-                if (temp3[i].memo.includes('Tzom Tammuz')) { temp3[i].memo = temp3[i].memo.replace('Tzom', '17 de ') }                
+                if (temp3[i].memo.includes('Tzom Tammuz')) { temp3[i].memo = temp3[i].memo.replace('Tzom', '17 de ') }
                 temp3[i].date = temp3[i].date.slice(0, temp3[i].date.indexOf('T'))
             }
 
