@@ -1,21 +1,13 @@
 /*
 
-validar bircat halebana q solo salga si es el mes
-
-download page link android
-
 shabat q quede dentro del cuadro
-
-
-myzmanim cuenta pagada
-
-
 
 Yortzait, aparte de los 10 años poner la fecha q se puso en español convertida 
 Perlas en bar muyzva 
 
-
 tache de zmanim view bien en esquina
+
+
 
 
 checar 
@@ -34,15 +26,10 @@ arriba de cal la seleccion de lugar
 como sacar todos los paises
 
 
-back de lavna hay q hacer q borre loq hay y meta datos nuevos
-
-
 como agrego animation al swipe?
 
 colores cal basarse en año hebreo
 
 seccion de zmanin del dia como calj
-
-seccion q salen todos los jaguim 
 
 */

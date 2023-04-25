@@ -456,6 +456,7 @@ function ZmanimView(props) {
         }
     }, [props.date, props?.a?.Zman])
 
+    // funcion q suma horario de verano
     useLayoutEffect(() => {
         if (props.a.Zman != undefined) {
             if (props.validaDST) {

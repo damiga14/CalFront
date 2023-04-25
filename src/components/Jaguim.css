@@ -1,12 +1,40 @@
 .title {
-  width: 50%;
+  width: 80%;
   margin: auto;
   text-align: center;
   font-weight: bold;
+  font-size: 2rem;
 }
 
 .fiestas {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.tabla {
+  width: 80%;
+  margin: auto;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.left {
+  float: left;
+  color: rgb(81, 149, 69);
+}
+
+.right {
+  float: right;
+  color: rgb(147, 61, 75);
+}
+
+tr {
+  border: 1px solid rgb(93, 92, 92) !important;
+  /* border-top: none !important; */
+  /* border-bottom: none !important; */
+  border-left: none !important;
+  border-right: none !important;
 }
