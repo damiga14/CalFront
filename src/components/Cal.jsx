@@ -680,7 +680,7 @@ function Cal() {
                     }
                 }
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => { console.log('nintendo',err) })
 
         axios.get(`${process.env.REACT_APP_BackURL}/api/v1/version`)
             .then((response) => {
