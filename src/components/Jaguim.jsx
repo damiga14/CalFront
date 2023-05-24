@@ -49,22 +49,6 @@ function Jaguim() {
             .catch((err) => { console.log(err) })
     }, [])
 
-    // useEffect(() => {
-    //     if (jaguimMayores.length > 0) {
-    //         for (let i in jaguimMayores) {
-    //             console.log(jaguimMayores[i].title)
-    //         }
-    //     }
-    // }, [jaguimMayores])
-
-    // useEffect(() => {
-    //     if (jaguimMenores.length > 0) {
-    //         for (let i in jaguimMenores) {
-    //             console.log(jaguimMenores[i].title)
-    //         }
-    //     }
-    // }, [jaguimMenores])
-
     useEffect(() => {
         if (acabo) {
             let temp1 = jaguimMayores
@@ -78,8 +62,22 @@ function Jaguim() {
                 if (temp1[i].title.includes('Erev')) { temp1[i].title = temp1[i].title.replace('Erev', 'Vispera') }
                 if (temp1[i].title == 'Simját Torá') { temp1[i].title = temp1[i].title = 'Shemini Atzeret' }
                 if (temp1[i].title == 'Janucá: 1 vela') { temp1[i].date = temp1[i].date.slice(0, temp1[i].date.indexOf('T')) }
+                if (temp1[i].title.includes('Rosh') && temp1[i].hdate.includes('1 Tishrei')) { temp1[i].title = 'Rosh Hashana 1er día' }
+                if (temp1[i].title == 'Rosh Hashana II') { temp1[i].title = 'Rosh Hashana 2do día' }
+                if (temp1[i].title == 'Vispera Yom Kippur') { temp1[i].title = 'Vispera Yom Kipur' }
+                if (temp1[i].title == 'Yom Kippur') { temp1[i].title = 'Yom Kipur' }
+                if (temp1[i].title == "Sukot I") { temp1[i].title = 'Sukot 1er día' }
+                if (temp1[i].title == "Sukot II") { temp1[i].title = 'Sukot 2do día' }
+                if (temp1[i].title == "Sukot VII (Hoshana Raba)") { temp1[i].title = 'Vispera Shemini Atzeret' }
+                if (temp1[i].title == "Shemini Atzeret") { temp1[i].title = 'Simjat Tora' }
+                if (temp1[i].title == "Shmini Atzeret") { temp1[i].title = 'Shemini Atzeret' }
+                if (temp1[i].title == "Janucá: 1 vela") { temp1[i].title = 'Januca 1era vela' }
+                if (temp1[i].title == "Pésaj I") { temp1[i].title = 'Pesaj 1er día' }
+                if (temp1[i].title == "Pésaj II") { temp1[i].title = 'Pesaj 2do día' }
+                if (temp1[i].title == "Pésaj VII") { temp1[i].title = 'Pesaj 7mo día' }
+                if (temp1[i].title == "Pésaj VIII") { temp1[i].title = 'Pesaj 8vo día' }
             }
-        
+
             for (let i in temp3) {
                 if (temp3[i].memo.includes('Erev')) { temp3[i].memo = temp3[i].memo.replace('Erev', 'Vispera') }
                 if (temp3[i].memo.includes('Gedaliah')) { temp3[i].memo = temp3[i].memo.replace('Gedaliah', 'Guedalia') }
@@ -89,24 +87,24 @@ function Jaguim() {
 
             // orden mayores
             for (let i in temp1) { if (temp1[i].title == "Vispera Rosh Hashana") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].hdate) { if (temp1[i].title.includes('Rosh') && temp1[i].hdate.includes('1 Tishrei')) { temp1Final.push(temp1[i]) } } }
-            for (let i in temp1) { if (temp1[i].title == "Rosh Hashana II") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Vispera Yom Kippur") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Yom Kippur") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Rosh Hashana 1er día") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Rosh Hashana 2do día") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Vispera Yom Kipur") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Yom Kipur") { temp1Final.push(temp1[i]) } }
             for (let i in temp1) { if (temp1[i].title == "Vispera Sukot") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Sukot I") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Sukot II") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Sukot VII (Hoshana Raba)") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Shmini Atzeret") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Sukot 1er día") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Sukot 2do día") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Vispera Shemini Atzeret") { temp1Final.push(temp1[i]) } }
             for (let i in temp1) { if (temp1[i].title == "Shemini Atzeret") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Janucá: 1 vela") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Simjat Tora") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Januca 1era vela") { temp1Final.push(temp1[i]) } }
             for (let i in temp1) { if (temp1[i].title == "Vispera Purim") { temp1Final.push(temp1[i]) } }
             for (let i in temp1) { if (temp1[i].title == "Purim") { temp1Final.push(temp1[i]) } }
             for (let i in temp1) { if (temp1[i].title == "Vispera Pesaj") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Pésaj I") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Pésaj II") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Pésaj VII") { temp1Final.push(temp1[i]) } }
-            for (let i in temp1) { if (temp1[i].title == "Pésaj VIII") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Pesaj 1er día") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Pesaj 2do día") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Pesaj 7mo día") { temp1Final.push(temp1[i]) } }
+            for (let i in temp1) { if (temp1[i].title == "Pesaj 8vo día") { temp1Final.push(temp1[i]) } }
 
             // orden menores, ya vienen bien
             temp2 = temp2.filter((item) => { return item.title != 'Rosh Hashana LaBehemot' && item.title != 'Leil Selijot' && item.title != 'Chag HaBanot' && item.title != 'Shushan Purim' && item.title != 'Janucá: 8º día' })
@@ -145,20 +143,9 @@ function Jaguim() {
                                         <>
                                             <tr>
                                                 {/* <td className='left'>{item.title}</td> */}
-                                                <td className='left' style={{ fontSize: item.title.length >= 18 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
-                                                <td className='right' style={{ fontSize: months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
+                                                <td className='left' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
+                                                <td className='right' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
                                             </tr>
-
-                                            {/* {
-                                                item.title == 'Purim' || item.title == 'Vispera Pesaj' || item.title == 'Vispera Shavuot' || item.title == 'Vispera Tisha BAv' || item.title == 'Vispera Rosh Hashana' || item.title == 'Vispera Yom Kippur' || item.title == 'Vispera Sukot' || item.title == 'Shmini Atzeret' || item.title == 'Simját Torá' || item.title == 'Janucá: 1 vela' ? <>
-
-                                                    <div className='fiestas'>
-                                                        <p>{item.title}</p>
-                                                        <p>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[1]}`}</p>
-                                                    </div>
-                                                </>
-                                                    : null
-                                            } */}
                                         </>
                                     )
                                 })
@@ -183,8 +170,8 @@ function Jaguim() {
                                     return (
                                         <>
                                             <tr>
-                                                <td className='left' style={{ fontSize: item.title.length >= 18 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
-                                                <td className='right' style={{ fontSize: months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
+                                                <td className='left' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
+                                                <td className='right' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
                                             </tr>
                                             {/* <div className='fiestas'>
                                                 <p>{item.title}</p>
@@ -214,8 +201,8 @@ function Jaguim() {
                                     return (
                                         <>
                                             <tr>
-                                                <td className='left' style={{ fontSize: item.memo.length >= 18 ? '0.9rem' : '1.2rem' }}>{item.memo}</td>
-                                                <td className='right' style={{ fontSize: months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
+                                                <td className='left' style={{ fontSize: item.memo.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{item.memo}</td>
+                                                <td className='right' style={{ fontSize: item.memo.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
                                             </tr>
                                             {/* <div className='fiestas'>
                                                 <p>{item.title}</p>
