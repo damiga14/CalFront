@@ -143,8 +143,8 @@ function Jaguim() {
                                         <>
                                             <tr>
                                                 {/* <td className='left'>{item.title}</td> */}
-                                                <td className='left' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
-                                                <td className='right' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
+                                                <td className='left' style={{ fontSize: item.title.length >= 17 || months[Number(item.date.split('-')[1])].length >= 7 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
+                                                <td className='right' style={{ fontSize: item.title.length >= 17 || months[Number(item.date.split('-')[1])].length >= 7 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
                                             </tr>
                                         </>
                                     )
@@ -170,8 +170,8 @@ function Jaguim() {
                                     return (
                                         <>
                                             <tr>
-                                                <td className='left' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
-                                                <td className='right' style={{ fontSize: item.title.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
+                                                <td className='left' style={{ fontSize: item.title.length >= 17 || months[Number(item.date.split('-')[1])].length >= 7 ? '0.9rem' : '1.2rem' }}>{item.title}</td>
+                                                <td className='right' style={{ fontSize: item.title.length >= 17 || months[Number(item.date.split('-')[1])].length >= 7 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
                                             </tr>
                                             {/* <div className='fiestas'>
                                                 <p>{item.title}</p>
@@ -201,8 +201,8 @@ function Jaguim() {
                                     return (
                                         <>
                                             <tr>
-                                                <td className='left' style={{ fontSize: item.memo.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{item.memo}</td>
-                                                <td className='right' style={{ fontSize: item.memo.length >= 18 || months[Number(item.date.split('-')[1])].length >= 9 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
+                                                <td className='left' style={{ fontSize: item.memo.length >= 17 || months[Number(item.date.split('-')[1])].length >= 7 ? '0.9rem' : '1.2rem' }}>{item.memo}</td>
+                                                <td className='right' style={{ fontSize: item.memo.length >= 17 || months[Number(item.date.split('-')[1])].length >= 7 ? '0.9rem' : '1.2rem' }}>{`${Number(item.date.split('-')[2])} de ${months[Number(item.date.split('-')[1])]} ${item.date.split('-')[0]}`}</td>
                                             </tr>
                                             {/* <div className='fiestas'>
                                                 <p>{item.title}</p>

@@ -28,7 +28,7 @@ function Popup(props) {
 
                     <div className='ion-text-center' id='inner'>
                         <IonText className='fuentePopover'>
-                            <ZmanimView date={props.horarios} a={props.APIresponse} a2={props.APIresponse2} calStructureHebrew={props.calStructureHebrew} lat={props.lat} long={props.long} validaDST={props.validaDST} />
+                            <ZmanimView date={props.horarios} a={props.APIresponse} a2={props.APIresponse2} a2Error={props.APIresponse2.error} calStructureHebrew={props.calStructureHebrew} lat={props.lat} long={props.long} validaDST={props.validaDST} />
                         </IonText>
                     </div>
 

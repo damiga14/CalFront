@@ -132,6 +132,7 @@ function Cal() {
     let [validaDST, setValidaDST] = useState('')
     let [APIresponse, setAPIresponse] = useState([])
     let [APIresponse2, setAPIresponse2] = useState([])
+    let [APIresponse2error, setAPIresponse2eror] = useState(false)
     let [APIresponseTemp, setAPIresponseTemp] = useState([])
     let [show, setShow] = useState(false);
     // let [lat, setLat] = useState();
@@ -216,7 +217,7 @@ function Cal() {
         // axios.get(`https://www.hebcal.com/shabbat?cfg=json&geonameid=3530597&&m=45&gy=${year}&gm=${month}&gd=${day}&lg=es`)
         axios.get(`https://www.hebcal.com/shabbat?cfg=json&m=45&gy=${year}&gm=${month}&gd=${day}&lg=es&latitude=${lat}&longitude=${long}&tzid=${tzlookup(lat, long)}`)
             .then((response) => { setAPIresponse2(response) })
-            .catch((err) => { console.log(err) })
+            .catch((err) => { console.log(err); setAPIresponse2eror(true) })
     }
 
     function getCalStructure(date) {
@@ -418,7 +419,7 @@ function Cal() {
                     }
                 }
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => { console.log(err); setAPIresponse2eror(true) })
 
         axios.get(`https://www.hebcal.com/converter?cfg=json&start=${dateStartdespues}&end=${dateEnddespues}&g2h=1`)
             .then((response) => {
@@ -433,7 +434,7 @@ function Cal() {
                     }
                 }
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => { console.log(err); setAPIresponse2eror(true) })
 
         axios.get(`https://www.hebcal.com/converter?cfg=json&start=${dateStart}&end=${dateEnd}&g2h=1`)
             .then((response) => {
@@ -448,7 +449,7 @@ function Cal() {
                     }
                 }
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => { console.log(err); setAPIresponse2eror(true) })
 
         axios.get(`https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&month=x&ss=on&mf=on&c=on&geo=geoname&geonameid=3530597&M=on&s=on&start=${dateStart}&end=${dateEnd}&lg=es`)
             .then((response) => {
@@ -506,7 +507,7 @@ function Cal() {
                     }
                 }
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => { console.log(err); setAPIresponse2eror(true) })
 
         if (firstTime) {
             // Dias
@@ -680,7 +681,7 @@ function Cal() {
                     }
                 }
             })
-            .catch((err) => { console.log('nintendo',err) })
+            .catch((err) => { console.log('nintendo', err) })
 
         axios.get(`${process.env.REACT_APP_BackURL}/api/v1/version`)
             .then((response) => {
@@ -1014,7 +1015,7 @@ function Cal() {
                             : null
                     }
 
-                    <Popup trigger={show} setTrigger={setShow} horarios={horarios} APIresponse={APIresponse} APIresponse2={APIresponse2} calStructureHebrew={calStructureHebrew} lat={lat} long={long} validaDST={validaDST} />
+                    <Popup trigger={show} setTrigger={setShow} horarios={horarios} APIresponse={APIresponse} APIresponse2={APIresponse2} APIresponse2error={APIresponse2error} calStructureHebrew={calStructureHebrew} lat={lat} long={long} validaDST={validaDST} />
                     <br /><br /><br />
                 </IonContent>
             </IonPage>

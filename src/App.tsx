@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { swapHorizontalOutline, calendarNumberOutline, informationCircleOutline, searchCircleOutline, moonOutline } from 'ionicons/icons';
+import { swapHorizontalOutline, calendarNumberOutline, informationCircleOutline, searchCircleOutline, moonOutline, listOutline } from 'ionicons/icons';
 
 import Splash from './components/Splash'
 import Tab1 from './pages/Tab1.jsx';
@@ -57,30 +57,14 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet animation={animationBuilder}>
-          <Route exact path="/splash">
-            <Splash />
-          </Route>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route path="/tab5">
-            <Tab5 />
-          </Route>
-          <Route path="/tab6">
-            <Tab6 />
-          </Route>
-          <Route path="/tab7">
-            <Tab7 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/splash" />
-          </Route>
+          <Route exact path="/splash"><Splash /></Route>
+          <Route exact path="/tab1"><Tab1 /></Route>
+          <Route exact path="/tab2"><Tab2 /></Route>
+          <Route path="/tab3"><Tab3 /></Route>
+          <Route path="/tab5"><Tab5 /></Route>
+          <Route path="/tab6"><Tab6 /></Route>
+          <Route path="/tab7"><Tab7 /></Route>
+          <Route exact path="/"><Redirect to="/splash" /></Route>
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom" id='myTabBar'>
@@ -88,27 +72,33 @@ const App: React.FC = () => (
             <IonIcon icon={calendarNumberOutline} />
             <IonLabel>Cal</IonLabel>
           </IonTabButton>
+
           <IonTabButton tab="tab2" href="/tab2">
             <IonIcon icon={searchCircleOutline} />
             <IonLabel>Buscador</IonLabel>
           </IonTabButton>
+
           <IonTabButton tab="tab3" href="/tab3">
             <IonIcon icon={swapHorizontalOutline} />
             <IonLabel>Convertir</IonLabel>
           </IonTabButton>
+
           <IonTabButton tab="tab5" href="/tab5">
             <IonIcon icon={moonOutline} />
             <IonLabel>Lebana</IonLabel>
           </IonTabButton>
+
           <IonTabButton tab="tab7" href="/tab7">
-            <IonIcon icon={informationCircleOutline} />
+            <IonIcon icon={listOutline} />
             <IonLabel>Jaguim</IonLabel>
           </IonTabButton>
+
           <IonTabButton tab="tab6" href="/tab6">
             <IonIcon icon={informationCircleOutline} />
             <IonLabel>Info</IonLabel>
           </IonTabButton>
         </IonTabBar>
+
       </IonTabs>
     </IonReactRouter>
   </IonApp>

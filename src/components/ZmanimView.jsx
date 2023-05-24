@@ -760,7 +760,9 @@ function ZmanimView(props) {
                     </>
                     :
 
-                    props.a.ErrMsg != null ?
+                    // make a ternary with 2 posible errors
+
+                    props.a.ErrMsg != null || props.a2Error ?
                         <>
                             <IonText className='ion-text-center' color='danger'><b>Ocurrio un error, intenta de nuevo por favor.</b></IonText>
 
