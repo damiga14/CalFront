@@ -132,6 +132,7 @@ function Cal() {
     let [validaDST, setValidaDST] = useState('')
     let [APIresponse, setAPIresponse] = useState([])
     let [APIresponse2, setAPIresponse2] = useState([])
+    let [APIresponse3, setAPIresponse3] = useState([])
     let [APIresponse2error, setAPIresponse2eror] = useState(false)
     let [APIresponseTemp, setAPIresponseTemp] = useState([])
     let [show, setShow] = useState(false);
@@ -217,6 +218,14 @@ function Cal() {
         // axios.get(`https://www.hebcal.com/shabbat?cfg=json&geonameid=3530597&&m=45&gy=${year}&gm=${month}&gd=${day}&lg=es`)
         axios.get(`https://www.hebcal.com/shabbat?cfg=json&m=45&gy=${year}&gm=${month}&gd=${day}&lg=es&latitude=${lat}&longitude=${long}&tzid=${tzlookup(lat, long)}`)
             .then((response) => { setAPIresponse2(response) })
+            .catch((err) => { console.log(err); setAPIresponse2eror(true) })
+
+        let date2 = dayjs(new Date(year, Number(month) -1, day)).add(1, 'week')
+        date2.$M = date2.$M + 1
+        if (date2.$M .toString().length < 2) { date2.$M  = '0' + date2.$M .toString() }
+
+        axios.get(`https://www.hebcal.com/shabbat?cfg=json&m=45&gy=${date2.$y}&gm=${date2.$M}&gd=${date2.$D}&lg=es&latitude=${lat}&longitude=${long}&tzid=${tzlookup(lat, long)}`)
+            .then((response) => { setAPIresponse3(response) })
             .catch((err) => { console.log(err); setAPIresponse2eror(true) })
     }
 
@@ -1015,7 +1024,8 @@ function Cal() {
                             : null
                     }
 
-                    <Popup trigger={show} setTrigger={setShow} horarios={horarios} APIresponse={APIresponse} APIresponse2={APIresponse2} APIresponse2error={APIresponse2error} calStructureHebrew={calStructureHebrew} lat={lat} long={long} validaDST={validaDST} />
+                    <Popup trigger={show} setTrigger={setShow} horarios={horarios} APIresponse={APIresponse} APIresponse2={APIresponse2} APIresponse3={APIresponse3} APIresponse2error={APIresponse2error} calStructureHebrew={calStructureHebrew} lat={lat} long={long} validaDST={validaDST} />
+
                     <br /><br /><br />
                 </IonContent>
             </IonPage>

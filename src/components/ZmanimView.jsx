@@ -192,6 +192,7 @@ function ZmanimView(props) {
     let [loading, setLoading] = useState(true)
     let [avisaDST, setAvisaDST] = useState(false)
     let [locationName, setLocationName] = useState('')
+    let [jukatBalak, setJukatBalak] = useState(false)
 
     let [Yakir110, setYakir110] = useState()
     let [Dawn72fix, setDawn72fix] = useState()
@@ -422,6 +423,7 @@ function ZmanimView(props) {
             setDiceHamelej(false)
             setIzcor(false)
             setAvisaDST(false)
+            setJukatBalak(false)
 
             //barej alenu si es año bisiesto de goy, el año anterior es 5 dic en la noche, si no es el 4 en la noche
             if (daysInFebruary(Number(props.date.slice(0, 4)) + 1) == 29) {
@@ -732,7 +734,17 @@ function ZmanimView(props) {
             }
             // else if (props.a.ErrMsg == 'NotAuthorizedSeeApiDashboardForDetails') { }
         }
-    }, [props.a, props.a2, props.date])
+
+        if (props.a3.data != undefined) {
+            for (let i in props.a3.data.items) {
+                if (props.a3.data.items[i].category == 'parashat') {
+                    if (props.a3.data.items[i].title == 'Parashá Jukat-Balak') {
+                        setJukatBalak(true)
+                    }
+                }
+            }
+        }
+    }, [props.a, props.a2, props.a3, props.date])
 
     useEffect(() => {
         if (extra == 'Shabat Parah' || extra == 'Shabat HaJodesh' || extra == 'Shabat Zajor' || extra == 'Shabat Shekalim') {
@@ -744,6 +756,7 @@ function ZmanimView(props) {
     return (
         <>
             {/* {console.log(props.a, props.a2)} */}
+            {/* {console.log(props.a2, props.a3)} */}
 
             {
                 props.a.ErrMsg == 'DateOutOfRange' ?
@@ -810,7 +823,30 @@ function ZmanimView(props) {
                                         perasha2 ?
                                             extra == 'Shabat Parah' || extra == 'Shabat HaJodesh' || extra == 'Shabat Zajor' || extra == 'Shabat Shekalim' ?
                                                 <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}-{extra}</IonText></b></>
-                                                : <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}</IonText></b></>
+                                                // : <><IonText className='small'>Perasha de la semana: </IonText><b><br /><IonText className="perasha">{perasha2}</IonText></b></>
+
+                                                :
+                                                <>
+                                                    <IonText className='small'>Perasha de la semana: </IonText>
+
+                                                    <br />
+
+                                                    <b>
+                                                        {
+                                                            jukatBalak ?
+                                                                <><IonText className="perasha">{perasha2}</IonText><br /><IonText className="perasha" style={{color:'green', fontSize:'15px'}}>Costumbre Jalebi Koraj-Jukat</IonText></>
+
+                                                                :
+                                                                <>
+                                                                    {
+                                                                        perasha2 == 'Jukat-Balak' ?
+                                                                            <><IonText className="perasha">{perasha2}</IonText><br /><IonText className="perasha" style={{color:'green', fontSize:'15px'}}>Costumbre Jalebi Balak</IonText></>
+                                                                            : <><IonText className="perasha">{perasha2}</IonText></>
+                                                                    }
+                                                                </>
+                                                        }
+                                                    </b>
+                                                </>
                                             : null
                                     }
                                 </div>

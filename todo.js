@@ -10,11 +10,6 @@ tache de zmanim view bien en esquina
 
 
 
-checar 
-24 jun
-todo el mundo lee koraj solo y luego jukat balak
-jalebi koraj jukat y luego balak solo
-
 Página para configurar alertas 
 
 coordenadas de paisaes de calj
