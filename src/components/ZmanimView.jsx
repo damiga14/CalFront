@@ -755,6 +755,7 @@ function ZmanimView(props) {
 
     return (
         <>
+            {console.log(props.a)}
             {/* {console.log(props.a, props.a2)} */}
             {/* {console.log(props.a2, props.a3)} */}
 
@@ -834,13 +835,13 @@ function ZmanimView(props) {
                                                     <b>
                                                         {
                                                             jukatBalak ?
-                                                                <><IonText className="perasha">{perasha2}</IonText><br /><IonText className="perasha" style={{color:'green', fontSize:'15px'}}>Costumbre Jalebi Koraj-Jukat</IonText></>
+                                                                <><IonText className="perasha">{perasha2}</IonText><br /><IonText className="perasha" style={{ color: 'green', fontSize: '15px' }}>Costumbre Jalebi Koraj-Jukat</IonText></>
 
                                                                 :
                                                                 <>
                                                                     {
                                                                         perasha2 == 'Jukat-Balak' ?
-                                                                            <><IonText className="perasha">{perasha2}</IonText><br /><IonText className="perasha" style={{color:'green', fontSize:'15px'}}>Costumbre Jalebi Balak</IonText></>
+                                                                            <><IonText className="perasha">{perasha2}</IonText><br /><IonText className="perasha" style={{ color: 'green', fontSize: '15px' }}>Costumbre Jalebi Balak</IonText></>
                                                                             : <><IonText className="perasha">{perasha2}</IonText></>
                                                                     }
                                                                 </>

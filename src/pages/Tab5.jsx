@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonText, IonLabel, IonTitle, IonToolbar } from '@ionic/react';
 import './Tab5.css';
 import axios from 'axios'
 import Loading from '../components/Loading'
 import Levana from '../components/Levana'
 
+let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
 function Tab5() {
   let [cuantas, setCuantas] = useState([])
   let [levanaResponse2, setLevanaResponse2] = useState([])
   let [loading, setLoading] = useState(true)
 
-  async function levanaCall() {
+  function levanaCall() {
     axios.get(`${process.env.REACT_APP_BackURL}/api/v1/getLevana`)
       .then((response) => {
         setLevanaResponse2(response.data.data[0].json)
@@ -22,7 +24,7 @@ function Tab5() {
       .catch((err) => { console.log(err) })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     levanaCall()
   }, [])
 
@@ -48,11 +50,9 @@ function Tab5() {
 
           {loading ? <Loading /> : null}
 
-          {
-            cuantas.map((i) => {
-              return <><Levana month={i} key={i} /> </>
-            })
-          }
+          {/* {cuantas.map((i) => { return <><Levana month={i} key={i} /></> })} */}
+
+          {months.map((item, i) => { return <><Levana year={new Date().getFullYear()} monthName={item} key={item} /></> })}
         </div>
 
       </IonContent>

@@ -81,8 +81,8 @@ meses["Sh'vat"] = 'Shebat'
 meses["Iyyar"] = 'Iyar'
 
 // cuenta gratis
-let user = '0014083856'
-let key = '71b00e0576030cd79a4f6991e84028bc304ede1679022357f6ff2ac77c5602516ed17dcf9aba840c'
+let user = '0013269693'
+let key = '8e98ac6e9f502cf8f7a5e6d7b36b6d79175aab6b9df53193eec0b87e39e758a4651260e0a5789fa9'
 
 // cuenta buena no pagada
 // let user = '0013329078'
@@ -113,6 +113,7 @@ function Cal() {
     let [todaysDate, setTodaysDate] = useState(`${new Date().getFullYear()}-${mes}-${dia}`)
     let [todaysDateToChange, setTodaysDateToChange] = useState('')
     let [monthName, setMonthName] = useState('')
+    let [levanaYear, setlevanaYear] = useState('')
     let [monthNameHebrew1, setMonthNameHebrew1] = useState('')
     let [monthNameHebrew2, setMonthNameHebrew2] = useState('')
     let [hebrewYear1, sethebrewYear1] = useState('')
@@ -220,9 +221,9 @@ function Cal() {
             .then((response) => { setAPIresponse2(response) })
             .catch((err) => { console.log(err); setAPIresponse2eror(true) })
 
-        let date2 = dayjs(new Date(year, Number(month) -1, day)).add(1, 'week')
+        let date2 = dayjs(new Date(year, Number(month) - 1, day)).add(1, 'week')
         date2.$M = date2.$M + 1
-        if (date2.$M .toString().length < 2) { date2.$M  = '0' + date2.$M .toString() }
+        if (date2.$M.toString().length < 2) { date2.$M = '0' + date2.$M.toString() }
 
         axios.get(`https://www.hebcal.com/shabbat?cfg=json&m=45&gy=${date2.$y}&gm=${date2.$M}&gd=${date2.$D}&lg=es&latitude=${lat}&longitude=${long}&tzid=${tzlookup(lat, long)}`)
             .then((response) => { setAPIresponse3(response) })
@@ -398,6 +399,7 @@ function Cal() {
 
         //Create Cal
         setMonthName(getMonthName(calStructure[0].getMonth()))
+        setlevanaYear(calStructure[0].getFullYear)
 
         //Get MyZmanim
         // for (let i in calStructure) {
@@ -1019,7 +1021,8 @@ function Cal() {
                     {
                         monthName ?
                             <>
-                                <Levana title={true} nombre={monthName} key={monthName} />
+                                {/* <Levana title={true} year={levanaYear} nombre={monthName} key={monthName} /> */}
+                                <Levana title={true} year={levanaYear} monthName={monthName} key={monthName} />
                             </>
                             : null
                     }
