@@ -8,6 +8,7 @@ function Levana(props) {
     let [levanaResponse, setLevanaResponse] = useState([])
     // let [cual, setCual] = useState(0)
     let [cual, setCual] = useState({})
+    let [hayDatos, setHayDatos] = useState(false)
     let [loading, setLoading] = useState(true)
 
     function levanaCall() {
@@ -15,11 +16,13 @@ function Levana(props) {
             .then((response) => {
                 // setLevanaResponse(response.data.data[0].json); setLoading(false)
 
-                for (let i in response) {
-                    if (response[i].monthEspanol == props.monthName && response[i].year == props.year) {
-                        setLevanaResponse(response[i])
-                        setLoading(false)
+                for (let i in response.data.data) {
+                    if (response.data.data[i].monthEspanol == props.monthName && response.data.data[i].year == props.year) {
+                        setLevanaResponse(response.data.data[i])
+                        setHayDatos(true)
                     }
+                    
+                    setLoading(false)
                 }
             })
             .catch((err) => { console.log(err) })
@@ -84,64 +87,74 @@ function Levana(props) {
                     {loading ? <Loading /> : null}
 
                     {
-                        levanaResponse.molad ?
+                        hayDatos ?
                             <>
-                                <div className='levanaCard ion-text-center'>
-                                    {
-                                        props.title ?
-                                            <>
-                                                {/* <IonText color='horasyo' className='big'>Bircat Halebana Jodesh {levanaResponse.molad[cual].month}</IonText> */}
-                                                <IonText color='horasyo' className='big'>Bircat Halebana Jodesh {levanaResponse.monthHeb}</IonText>
-                                            </>
-
-                                            :
-                                            <>
-                                                {/* <IonText color='horasyo' className='big'>{levanaResponse.molad[cual].month}</IonText> */}
-                                                <IonText color='horasyo' className='big'>{levanaResponse.monthHeb}</IonText>
-                                            </>
-                                    }
-                                </div>
-
-                                <br />
-
-                                {/* <b>Molad Israel:</b> {levanaResponse.molad[cual].date} {levanaResponse.molad[cual].time} */}
-                                <b>Molad Israel:</b> {levanaResponse.molad}
-
-                                <br /><br />
-
-                                {/* <b>Comienza:</b> {levanaResponse.comienza[cual].time} */}
-                                <b>Comienza:</b> {levanaResponse.comienza}
-
-                                <br /><br />
-
                                 {
-                                    // levanaResponse.termina[cual].bediabad ?
-                                    levanaResponse.termina.bediabad != null ?
+                                    levanaResponse.molad ?
                                         <>
-                                            {/* <b>Termina Lejatejila:</b> {levanaResponse.termina[cual].lejatjila} */}
-                                            <b>Termina Lejatejila:</b> {levanaResponse.termina.lejatjila}
+                                            <div className='levanaCard ion-text-center'>
+                                                {
+                                                    props.title ?
+                                                        <>
+                                                            {/* <IonText color='horasyo' className='big'>Bircat Halebana Jodesh {levanaResponse.molad[cual].month}</IonText> */}
+                                                            <IonText color='horasyo' className='big'>Bircat Halebana Jodesh {levanaResponse.monthHeb} / {levanaResponse.monthEspanol} {levanaResponse.year} </IonText>
+                                                        </>
+
+                                                        :
+                                                        <>
+                                                            {/* <IonText color='horasyo' className='big'>{levanaResponse.molad[cual].month}</IonText> */}
+                                                            <IonText color='horasyo' className='big'>{levanaResponse.monthHeb} / {levanaResponse.monthEspanol} {levanaResponse.year} </IonText>
+                                                        </>
+                                                }
+                                            </div>
+
+                                            <br />
+
+                                            {/* <b>Molad Israel:</b> {levanaResponse.molad[cual].date} {levanaResponse.molad[cual].time} */}
+                                            <b>Molad Israel:</b> {levanaResponse.molad}
 
                                             <br /><br />
 
-                                            {/* <b>Termina Bediabad:</b> {levanaResponse.termina[cual].bediabad} */}
-                                            <b>Termina Bediabad:</b> {levanaResponse.termina.bediabad}
+                                            {/* <b>Comienza:</b> {levanaResponse.comienza[cual].time} */}
+                                            <b>Comienza:</b> {levanaResponse.comienza}
 
-                                            <br />
+                                            <br /><br />
+
+                                            {
+                                                // levanaResponse.termina[cual].bediabad ?
+                                                levanaResponse.termina.bediabad != null ?
+                                                    <>
+                                                        {/* <b>Termina Lejatejila:</b> {levanaResponse.termina[cual].lejatjila} */}
+                                                        <b>Termina Lejatejila:</b> {levanaResponse.termina.lejatjila}
+
+                                                        <br /><br />
+
+                                                        {/* <b>Termina Bediabad:</b> {levanaResponse.termina[cual].bediabad} */}
+                                                        <b>Termina Bediabad:</b> {levanaResponse.termina.bediabad}
+
+                                                        <br />
+                                                    </>
+
+                                                    :
+                                                    <>
+                                                        {/* <b>Termina:</b> {levanaResponse.termina[cual].lejatjila} */}
+                                                        <b>Termina:</b> {levanaResponse.termina.lejatjila}
+
+                                                        <br />
+                                                    </>
+                                            }
+
+                                            {/* <IonItem color='transparent' lines='none'></IonItem> */}
+
                                         </>
-
-                                        :
-                                        <>
-                                            {/* <b>Termina:</b> {levanaResponse.termina[cual].lejatjila} */}
-                                            <b>Termina:</b> {levanaResponse.termina.lejatjila}
-
-                                            <br />
-                                        </>
+                                        : null
                                 }
-
-                                {/* <IonItem color='transparent' lines='none'></IonItem> */}
-
                             </>
-                            : null
+
+                            :
+                            <>
+                                <IonText color='horasyo' className='big'>No hay informacion de Birkat Hablebana para este mes</IonText>
+                            </>
                     }
 
                 </IonCardContent>

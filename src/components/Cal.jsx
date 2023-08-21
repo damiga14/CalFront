@@ -23,6 +23,12 @@ import { Device } from '@capacitor/device';
 let lat = '19.4349023'
 let long = '-99.2069489'
 
+
+let colors = [
+    { a: 'rgb(204, 249, 208)', b: 'rgb(250, 246, 177)' },
+    { a: 'rgb(254, 233, 243)', b: 'rgb(208, 231, 213)' },
+]
+
 let yomTob = []
 yomTob['Pesaj 1'] = true
 yomTob['Pesaj 2'] = true
@@ -80,7 +86,7 @@ meses["Tevet"] = 'Tebet'
 meses["Sh'vat"] = 'Shebat'
 meses["Iyyar"] = 'Iyar'
 
-// cuenta gratis
+// cuenta mia pagada
 let user = '0013269693'
 let key = '8e98ac6e9f502cf8f7a5e6d7b36b6d79175aab6b9df53193eec0b87e39e758a4651260e0a5789fa9'
 
@@ -399,7 +405,7 @@ function Cal() {
 
         //Create Cal
         setMonthName(getMonthName(calStructure[0].getMonth()))
-        setlevanaYear(calStructure[0].getFullYear)
+        setlevanaYear(calStructure[0].getFullYear())
 
         //Get MyZmanim
         // for (let i in calStructure) {
@@ -582,23 +588,23 @@ function Cal() {
                 if (id % 7) {
                     if ((id >= 1 && id <= 7) || (id >= 15 && id <= 21) || (id >= 29 && id <= 35)) {
                         if (id % 2) {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', 'rgb(204, 249, 208)')
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].a)
                         }
                         else {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', 'rgb(250, 246, 177)')
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].b)
                         }
                     }
                     else if ((id >= 8 && id <= 14) || (id >= 22 && id <= 28) || (id >= 36 && id <= 42)) {
                         if (id % 2) {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', 'rgb(250, 246, 177)')
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].b)
                         }
                         else {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', 'rgb(204, 249, 208)')
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].a)
                         }
                     }
                 }
                 else {
-                    // document.getElementById(`square${id}`).style.setProperty('background-color', 'rgb(204, 249, 208)')
+                    // document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].a)
                     document.getElementById(`square${id}`).style.setProperty('border-color', 'rgb(250, 53, 53)')
                     document.getElementById(`square${id}`).style.setProperty('border-width', '1px')
                     document.getElementById(`square${id}`).style.setProperty('border-style', 'solid')
@@ -1021,7 +1027,6 @@ function Cal() {
                     {
                         monthName ?
                             <>
-                                {/* <Levana title={true} year={levanaYear} nombre={monthName} key={monthName} /> */}
                                 <Levana title={true} year={levanaYear} monthName={monthName} key={monthName} />
                             </>
                             : null
