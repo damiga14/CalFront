@@ -23,11 +23,12 @@ import { Device } from '@capacitor/device';
 let lat = '19.4349023'
 let long = '-99.2069489'
 
-
 let colors = [
     { a: 'rgb(204, 249, 208)', b: 'rgb(250, 246, 177)' },
     { a: 'rgb(254, 233, 243)', b: 'rgb(208, 231, 213)' },
 ]
+
+let cualColor = 0
 
 let yomTob = []
 yomTob['Pesaj 1'] = true
@@ -588,23 +589,23 @@ function Cal() {
                 if (id % 7) {
                     if ((id >= 1 && id <= 7) || (id >= 15 && id <= 21) || (id >= 29 && id <= 35)) {
                         if (id % 2) {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].a)
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[cualColor].a)
                         }
                         else {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].b)
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[cualColor].b)
                         }
                     }
                     else if ((id >= 8 && id <= 14) || (id >= 22 && id <= 28) || (id >= 36 && id <= 42)) {
                         if (id % 2) {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].b)
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[cualColor].b)
                         }
                         else {
-                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].a)
+                            document.getElementById(`square${id}`).style.setProperty('background-color', colors[cualColor].a)
                         }
                     }
                 }
                 else {
-                    // document.getElementById(`square${id}`).style.setProperty('background-color', colors[0].a)
+                    // document.getElementById(`square${id}`).style.setProperty('background-color', colors[cual].a)
                     document.getElementById(`square${id}`).style.setProperty('border-color', 'rgb(250, 53, 53)')
                     document.getElementById(`square${id}`).style.setProperty('border-width', '1px')
                     document.getElementById(`square${id}`).style.setProperty('border-style', 'solid')
