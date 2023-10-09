@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    namespace 'com.davidamiga.calateret'
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.davidamiga.calateret"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11
-        versionName "11.0"
+        versionCode 12
+        versionName "12.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
