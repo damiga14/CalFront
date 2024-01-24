@@ -1,5 +1,9 @@
 /*
 
+januka 2023 el dia q cayo rosh jodesh no salia halel conoleto
+
+tambien el dia del ayuno de diciembre, cayo en viernes, no salia hora q acaba ayuno 
+
 shabat q quede dentro del cuadro
 
 Yortzait, aparte de los 10 años poner la fecha q se puso en español convertida 
