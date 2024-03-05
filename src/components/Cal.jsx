@@ -53,10 +53,10 @@ yomTob['Simját Torá'] = true
 let pesaj = []
 pesaj["Pésaj I"] = 'Pesaj 1'
 pesaj["Pésaj II"] = 'Pesaj 2'
-pesaj["Pésaj III (J''M)"] = 'Pesaj 3'
-pesaj["Pésaj IV (J''M)"] = 'Pesaj 4'
-pesaj["Pésaj V (J''M)"] = 'Pesaj 5'
-pesaj["Pésaj VI (J''M)"] = 'Pesaj 6'
+pesaj["Pésaj III (J’’M)"] = 'Pesaj 3'
+pesaj["Pésaj IV (J’’M)"] = 'Pesaj 4'
+pesaj["Pésaj V (J’’M)"] = 'Pesaj 5'
+pesaj["Pésaj VI (J’’M)"] = 'Pesaj 6'
 pesaj["Pésaj VII"] = 'Pesaj 7'
 pesaj["Pésaj VIII"] = 'Pesaj 8'
 
@@ -74,10 +74,10 @@ januka["Janucá: 8º día"] = 'Januka 8'
 let sukot = []
 sukot["Sukot I"] = 'Sukot 1'
 sukot["Sukot II"] = 'Sukot 2'
-sukot["Sukot III (J''M)"] = 'Sukot 3'
-sukot["Sukot IV (J''M)"] = 'Sukot 4'
-sukot["Sukot V (J''M)"] = 'Sukot 5'
-sukot["Sukot VI (J''M)"] = 'Sukot 6'
+sukot["Sukot III (J’’M)"] = 'Sukot 3'
+sukot["Sukot IV (J’’M)"] = 'Sukot 4'
+sukot["Sukot V (J’’M)"] = 'Sukot 5'
+sukot["Sukot VI (J’’M)"] = 'Sukot 6'
 sukot["Sukot VII (Hoshana Raba)"] = 'Hoshana Raba'
 
 let meses = []
@@ -486,7 +486,7 @@ function Cal() {
                                 calStructureHolidays[response.data.items[i].date.slice(8, 10)] += '<br>' + sukot[response.data.items[i].title]
                             }
                             else {
-                                if (response.data.items[i].title != 'Rosh Hashana LaBehemot') {
+                                if (response.data.items[i].title != 'Rosh Hashana LaBehemot' && response.data.items[i].title != 'Chag HaBanot') {
                                     if (response.data.items[i].title == 'Leil Selijot') {
                                         calStructureHolidays[response.data.items[i].date.slice(8, 10)] += '<br> Selijot Ashkenazim'
                                     }
@@ -506,7 +506,7 @@ function Cal() {
                                 calStructureHolidays[response.data.items[i].date.slice(8, 10)] = sukot[response.data.items[i].title]
                             }
                             else {
-                                if (response.data.items[i].title != 'Rosh Hashana LaBehemot') {
+                                if (response.data.items[i].title != 'Rosh Hashana LaBehemot' && response.data.items[i].title != 'Chag HaBanot') {
                                     if (response.data.items[i].title == 'Leil Selijot') {
                                         calStructureHolidays[response.data.items[i].date.slice(8, 10)] = 'Selijot Ashkenazim'
                                     }

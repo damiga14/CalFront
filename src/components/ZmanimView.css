@@ -21,7 +21,11 @@
 
 .small {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 3vw;
+  font-size: 4vw;
+}
+
+.extraRed {
+  color: red;
 }
 
 .smaller {

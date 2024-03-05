@@ -121,10 +121,10 @@ horariosPesajComer[31] = { "marzo": '9: 49 AM', "abril": '', "marzoVerano": '10:
 let pesaj = []
 pesaj["Pésaj I"] = 'Pesaj 1'
 pesaj["Pésaj II"] = 'Pesaj 2'
-pesaj["Pésaj III (J''M)"] = 'Pesaj 3'
-pesaj["Pésaj IV (J''M)"] = 'Pesaj 4'
-pesaj["Pésaj V (J''M)"] = 'Pesaj 5'
-pesaj["Pésaj VI (J''M)"] = 'Pesaj 6'
+pesaj["Pésaj III (J’’M)"] = 'Pesaj 3'
+pesaj["Pésaj IV (J’’M)"] = 'Pesaj 4'
+pesaj["Pésaj V (J’’M)"] = 'Pesaj 5'
+pesaj["Pésaj VI (J’’M)"] = 'Pesaj 6'
 pesaj["Pésaj VII"] = 'Pesaj 7'
 pesaj["Pésaj VIII"] = 'Pesaj 8'
 
@@ -142,10 +142,10 @@ januka["Janucá: 8º día"] = 'Januka 8'
 let sukot = []
 sukot["Sukot I"] = 'Sukot 1'
 sukot["Sukot II"] = 'Sukot 2'
-sukot["Sukot III (J''M)"] = 'Sukot 3'
-sukot["Sukot IV (J''M)"] = 'Sukot 4'
-sukot["Sukot V (J''M)"] = 'Sukot 5'
-sukot["Sukot VI (J''M)"] = 'Sukot 6'
+sukot["Sukot III (J’’M)"] = 'Sukot 3'
+sukot["Sukot IV (J’’M)"] = 'Sukot 4'
+sukot["Sukot V (J’’M)"] = 'Sukot 5'
+sukot["Sukot VI (J’’M)"] = 'Sukot 6'
 sukot["Sukot VII (Hoshana Raba)"] = 'Hoshana Raba'
 
 let meses = []
@@ -652,7 +652,7 @@ function ZmanimView(props) {
                                     setExtra(sukot[props.a2.data.items[i].title])
                                 }
                                 else {
-                                    if (props.a2.data.items[i].title != 'Rosh Hashana LaBehemot') {
+                                    if (props.a2.data.items[i].title != 'Rosh Hashana LaBehemot' && props.a2.data.items[i].title != 'Chag HaBanot') {
                                         if (props.a2.data.items[i].title.includes('observado')) { setExtra(props.a2.data.items[i].title.replace('(observado)', '')) }
                                         else if (props.a2.data.items[i].title.includes('Erev')) { setExtra2(props.a2.data.items[i].title.replace('Erev', 'Víspera de ')) }
                                         else if (props.a2.data.items[i].title.includes('Havdalah (45 min)')) { setExtra(props.a2.data.items[i].memo) }
@@ -664,11 +664,16 @@ function ZmanimView(props) {
                             hayAntes = true
                         }
                         else {
-                            if (props.a2.data.items[i].title != 'Rosh Hashana LaBehemot') {
+                            if (props.a2.data.items[i].title != 'Rosh Hashana LaBehemot' && props.a2.data.items[i].title != 'Chag HaBanot') {
                                 if (props.a2.data.items[i].title.includes('Erev')) { setExtra2(props.a2.data.items[i].title.replace('Erev', 'Víspera de ')) }
                                 else { setExtra2(props.a2.data.items[i].title) }
                             }
                         }
+                    }
+                }
+                if (props.a2.data.items[i].title == "Pésaj VI (J’’M)") {
+                    if (props.a2.data.items[i].date.slice(8, 10) == today) {
+                        setExtra2('Víspera de Yom Tob')
                     }
                 }
                 else if (props.a2.data.items[i].category == 'roshchodesh') {
@@ -755,8 +760,8 @@ function ZmanimView(props) {
 
     return (
         <>
-            {console.log(props.a)}
-            {/* {console.log(props.a, props.a2)} */}
+            {/* {console.log(props.a)} */}
+            {console.log(props.a, props.a2)}
             {/* {console.log(props.a2, props.a3)} */}
 
             {
@@ -862,9 +867,10 @@ function ZmanimView(props) {
                                             <>
                                                 <div>
                                                     <br />
-                                                    {extra ? <><b><IonText className="extra" color='danger'>{extra}</IonText></b><br /></> : null}
+                                                    {extra ? <><b><IonText className="extra extraRed" color='danger'>{extra}</IonText></b><br /></> : null}
                                                 </div>
                                             </>
+
                                             :
                                             <>
                                                 <div>
@@ -872,27 +878,27 @@ function ZmanimView(props) {
                                                         extra ?
                                                             extra.indexOf('|') != -1 ?
                                                                 <>
-                                                                    <b><IonText className="extra">{extra.slice(0, extra.indexOf('|'))}</IonText></b><br />
+                                                                    <b><IonText className="extra extraRed">{extra.slice(0, extra.indexOf('|'))}</IonText></b><br />
                                                                     <b><IonText className="extra" color='success'>{extra.slice(extra.indexOf('|') + 1, extra.length)}</IonText></b>
                                                                 </>
                                                                 :
 
                                                                 extra == 'Leil Selijot' ?
                                                                     <>
-                                                                        <b><IonText className="extra">Primer dia Selijot Ashkenazim</IonText></b><br />
+                                                                        <b><IonText className="extra extraRed">Primer dia Selijot Ashkenazim</IonText></b><br />
                                                                     </>
 
                                                                     :
                                                                     extra == "Ta'anit Bejorot" ?
                                                                         <>
-                                                                            <b><IonText className="extra">Ayuno Primogenitos</IonText></b><br />
+                                                                            <b><IonText className="extra extraRed">Ayuno Primogenitos</IonText></b><br />
                                                                         </>
 
                                                                         :
                                                                         <>
                                                                             {
                                                                                 extra == 'Shabat Parah' || extra == 'Shabat HaJodesh' || extra == 'Shabat Zajor' || extra == 'Shabat Shekalim' ? null
-                                                                                    : <><b><IonText className="extra">{extra}</IonText></b><br /></>
+                                                                                    : <><b><IonText className="extra extraRed">{extra}</IonText></b><br /></>
                                                                             }
                                                                         </>
                                                             : null
@@ -903,12 +909,12 @@ function ZmanimView(props) {
                                 }
 
                                 <div>
-                                    {extra2 ? <><b><IonText className="extra small">{extra2}</IonText></b><br /></> : null}
+                                    {extra2 ? <><b><IonText className="extra small extraRed">{extra2}</IonText></b><br /></> : null}
 
                                     <div>
                                         {
                                             props.a.Time ?
-                                                props.a.Time.IsRoshChodesh ?
+                                                props.a.Time.IsRoshChodesh && props.a.Time.Holiday != 'ראש חודש טבת' ?
                                                     <><b><IonText className="extra small">Halel Salteado</IonText></b></>
 
                                                     : props.a.Time.IsCholHamoed && props.a.Time.Weekday != 'Shabbos' ?
@@ -920,7 +926,7 @@ function ZmanimView(props) {
                                         {
                                             extra ?
                                                 props.a.Time ?
-                                                    (props.a.Time.ParshaAndHoliday == "חול המועד" || props.a.Time.ParshaAndHoliday == 'שביעי של פסח' || props.a.Time.ParshaAndHoliday == 'שמיני של פסח') && extra.includes('Pesaj') ?
+                                                    (props.a.Time.ParshaAndHoliday == "חול המועד" || props.a.Time.Holiday == 'ערב שביעי של פסח' || props.a.Time.ParshaAndHoliday == 'שביעי של פסח' || props.a.Time.ParshaAndHoliday == 'שמיני של פסח' || props.a.Time.ParshaAndHoliday == 'אחרון של פסח') && extra.includes('Pesaj') ?
                                                         <><b><IonText className="extra small">Halel Salteado</IonText></b></>
                                                         : null
                                                     : null
@@ -930,22 +936,27 @@ function ZmanimView(props) {
                                 </div>
 
                                 <div>
+                                    {/* halel completo lo dividi porq hay unos q dependen de extra y otros de props.a y si lo junto en la misma validacion algunos no salina bien */}
                                     {
                                         extra ?
-                                            props.a.Time ?
-                                                props.a.Time.ParshaAndHoliday == 'סוכות' || props.a.Time.ParshaAndHoliday == 'שמיני עצרת' || props.a.Time.ParshaAndHoliday == 'שמחת תורה' || props.a.Time.ParshaAndHoliday == 'חנוכה' || extra == 'Pesaj 1' || extra == 'Pesaj 2' || extra.includes('Sukot') ?
-                                                    <><b><IonText className="extra small">Halel Completo</IonText></b><br /></>
-                                                    : null
+                                            extra == 'Pesaj 1' || extra == 'Pesaj 2' || extra.includes('Sukot') ?
+                                                <><b><IonText className="extra small">Halel Completo</IonText></b><br /></>
                                                 : null
                                             : null
                                     }
 
                                     {
-                                        extra ?
-                                            props.a.Time ?
-                                                props.a.Time.Omer == 49 || extra == 'Sukot 6' ?
-                                                    <><b><IonText className="extra small">En la noche desvelada</IonText></b><br /></>
-                                                    : null
+                                        props.a.Time ?
+                                            props.a.Time.ParshaAndHoliday == 'הושענא רבה' || props.a.Time.ParshaAndHoliday == 'שמיני עצרת' || props.a.Time.ParshaAndHoliday == 'שמחת תורה' || props.a.Time.Holiday == 'ראש חודש טבת' || props.a.Time.ParshaAndHoliday == 'חנוכה' ?
+                                                <><b><IonText className="extra small">Halel Completo</IonText></b><br /></>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        extra || props.a.Time ?
+                                            props.a.Time.Omer == 49 || extra == 'Sukot 6' ?
+                                                <><b><IonText className="extra small">En la noche desvelada</IonText></b><br /></>
                                                 : null
                                             : null
                                     }
@@ -962,9 +973,26 @@ function ZmanimView(props) {
 
                                     {
                                         props.a.Time ?
+                                            props.a.Time.ParshaAndHoliday == 'ראש חודש ניסן' ?
+                                                <><b><IonText className="extra small" color='success'>Beraja de los árboles</IonText></b><br /></>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.ParshaAndHoliday == 'אסרו חג' ?
+                                                <><b><IonText className="extra small" color='success'>Isru Jag</IonText></b><br /></>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
                                             props.a.Time.ParshaAndHoliday == 'פורים' ?
                                                 <><b><IonText className="extra small" color='success'>Lectura de Meguila</IonText></b><br /></>
-                                                : props.a.Time.ParshaAndHoliday == 'תענית אסתר' ?
+                                                // : props.a.Time.ParshaAndHoliday == 'תענית אסתר' ?
+                                                : props.a.Time.DateJewish.indexOf('12-13') != -1 || props.a.Time.DateJewish.indexOf('13-13') != -1 ?
                                                     <><b><IonText className="extra small" color='success'>En la noche lectura de Meguila</IonText></b><br /></>
                                                     : null
                                             : null
@@ -980,7 +1008,7 @@ function ZmanimView(props) {
 
                                     {
                                         props.a.Time ?
-                                            (props.a.Time.ParshaAndHoliday == "חול המועד" || diceAnna) && props.a.Time.Weekday != 'Shabbos' && !props.a.Time.IsYomTov && !props.a.Time.IsRoshChodesh ?
+                                            (props.a.Time.ParshaAndHoliday == "חול המועד" || props.a.Time.ParshaAndHoliday == "פורים" || props.a.Time.DateJewishLong.search('י״ד אדר-א') == 0 || diceAnna) && props.a.Time.Weekday != 'Shabbos' && !props.a.Time.IsYomTov && !props.a.Time.IsRoshChodesh ?
                                                 <><b><IonText className="extra small" color='danger'>No se dice Anna (tajanun)</IonText></b> <br /></>
                                                 : null
                                             : null
@@ -1004,6 +1032,15 @@ function ZmanimView(props) {
                                                 <><><b><IonText className="extra small" color='danger'>Erub Tabshilin</IonText></b></></>
                                                 : null
                                             : null
+                                    }
+
+                                    {
+                                        props.a.Time ?
+                                            props.a.Time.IsErevTishaBav ?
+                                                <><><b><IonText className="extra small" color='danger'>{`${Number(props.a.Time.DateJewish.slice(0, 4)) - 3828} años del Jorbán`}</IonText></b></></>
+                                                : null
+                                            : null
+
                                     }
                                 </div>
 
@@ -1227,22 +1264,6 @@ function ZmanimView(props) {
                                     }
 
                                     {
-                                        props.a.Time ?
-                                            props.a.Time.TonightIsYomTov && props.a.Time.Weekday != 'Friday' ?
-                                                <>
-                                                    <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
-
-                                                    <br />
-
-                                                    <IonText className='big'>{candles}</IonText>
-
-                                                    <br /> <br />
-                                                </>
-                                                : null
-                                            : null
-                                    }
-
-                                    {
                                         fastBegins ?
                                             <>
                                                 <IonText className='big' color='danger'>Ayuno Comienza</IonText>
@@ -1266,6 +1287,22 @@ function ZmanimView(props) {
                                     <br /><br />
 
                                     {
+                                        props.a.Time ?
+                                            props.a.Time.TonightIsYomTov && props.a.Time.Weekday != 'Friday' ?
+                                                <>
+                                                    <IonText className='big' color='danger'>Encendido Yom Tob &#x1F56F;&#x1F56F;</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='big'>{candles}</IonText>
+
+                                                    <br /> <br />
+                                                </>
+                                                : null
+                                            : null
+                                    }
+
+                                    {
                                         fastEnds ?
                                             !kipur ?
                                                 <>
@@ -1285,6 +1322,7 @@ function ZmanimView(props) {
 
                                                     <br /><br />
                                                 </>
+
                                                 :
                                                 <>
                                                     <IonText className='big' color='success'>Fin Ayuno y Yom Tob 45 min</IonText>
@@ -1301,6 +1339,32 @@ function ZmanimView(props) {
                                                     <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(40, 'minute').$d.toString())} </IonText> <br />
                                                     <br />
                                                 </>
+                                            : null
+                                    }
+
+                                    {
+                                        // si asara betebet es viernes, hebcal no da fin ayuno, con esto ya sale
+                                        props.a.Time ?
+                                            props.a.Time.IsAsaraBiteves && !fastEnds ?
+                                                <>
+                                                    <IonText className='big' color='success'>Fin Ayuno 45 min</IonText>
+
+                                                    <br />
+
+                                                    <IonText className='big'>{formatZmanMio(dayjs(SunsetLevel).add(45, 'minute').$d.toString())}</IonText>
+
+                                                    <br />
+
+                                                    {/* {props.a.Zman ? <> <IonText className='small'>&#128073; Otras opiniones: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br /> </> : null}
+{props.a.Zman ? <> <IonText className='small'>&#128073; En caso de necesidad: {formatZman3(dayjs(props.a.Zman.SunsetLevel).add(30, 'minute').$d.toString())} </IonText></> : null} */}
+
+                                                    <IonText className='small'>&#128073; Otras opiniones: {formatZmanMio(dayjs(SunsetLevel).add(35, 'minute').$d.toString())} </IonText> <br />
+                                                    <IonText className='small'>&#128073; En caso de necesidad: {formatZmanMio(dayjs(SunsetLevel).add(30, 'minute').$d.toString())} </IonText>
+
+                                                    <br /><br />
+                                                </>
+
+                                                : null
                                             : null
                                     }
 
@@ -1369,12 +1433,13 @@ function ZmanimView(props) {
                                                     <br /><br />
 
                                                     {
-                                                        props.a.Time.IsYomKipper ?
+                                                        props.a.Time.IsYomKipper || (props.a.Time.IsYomTov && !props.a.Time.TonightIsYomTov) ?
                                                             <>
                                                                 <IonText className='big' color='success'>Rabenu Tam</IonText>
                                                                 <br />
                                                                 <IonText>{formatZmanMio(Night72fixLevel)}</IonText>
                                                             </>
+
                                                             :
                                                             <>
                                                                 <IonText color='horasyo'>Rabenu Tam</IonText>
