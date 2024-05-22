@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { IonText, IonIcon, IonButton, IonPopover, useIonViewWillEnter, IonPage, IonContent } from '@ionic/react';
 import { chevronBackOutline, chevronForwardOutline } from "ionicons/icons";
+import {HebrewCalendar, HDate, Location, Event} from '@hebcal/core';
 import axios from 'axios'
 import add from 'date-fns/add'
 import sub from 'date-fns/sub'
@@ -213,7 +214,7 @@ function Cal() {
         var day = JSON.parse(response);
 
         setAPIresponse(day)
-        // setAPIresponseTemp(day)        
+        // setAPIresponseTemp(day)
     }
 
     function myZmanimCall_callback2(response) {
@@ -235,6 +236,10 @@ function Cal() {
         axios.get(`https://www.hebcal.com/shabbat?cfg=json&m=45&gy=${date2.$y}&gm=${date2.$M}&gd=${date2.$D}&lg=es&latitude=${lat}&longitude=${long}&tzid=${tzlookup(lat, long)}`)
             .then((response) => { setAPIresponse3(response) })
             .catch((err) => { console.log(err); setAPIresponse2eror(true) })
+    }
+
+    function zmanimHebCalLocal(date){
+        console.log(date)
     }
 
     function getCalStructure(date) {
@@ -351,6 +356,8 @@ function Cal() {
         // myZmanimCall(myZmanimCall_callback, date)
 
         hebcalCall(year, month, day)
+
+        zmanimHebCalLocal(date)
 
         // setShowPopover(true)
         setShow(true)
