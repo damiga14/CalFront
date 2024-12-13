@@ -2,8 +2,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { IonText, IonIcon, IonButton, IonPopover, useIonViewWillEnter, IonPage, IonContent } from '@ionic/react';
-import { chevronBackOutline, chevronForwardOutline } from "ionicons/icons";
-import {HebrewCalendar, HDate, Location, Event} from '@hebcal/core';
+import { chevronBackOutline, chevronForwardOutline } from "ionicons/icons"
+import { HebrewCalendar, Location, GeoLocation, Zmanim, HDate } from '@hebcal/core';
+// import '@hebcal/locales';
 import axios from 'axios'
 import add from 'date-fns/add'
 import sub from 'date-fns/sub'
@@ -238,7 +239,7 @@ function Cal() {
             .catch((err) => { console.log(err); setAPIresponse2eror(true) })
     }
 
-    function zmanimHebCalLocal(date){
+    function zmanimHebCalLocal(date) {
         console.log(date)
     }
 
@@ -680,7 +681,26 @@ function Cal() {
         // console.log('Network status:', status);
 
         if (!status.connected) { setShowPopover2(true) }
-    };
+    }
+
+    function getHebcal() {
+        let a = new Location(19.4335, -99.194)
+
+        const options = {
+            location: a.getName(),
+            year: new Date().getFullYear(),
+            isHebrewYear: false,
+            month: new Date().getMonth() + 1,
+            candlelighting: false,
+            sedrot: true,
+            omer: true,
+            noModern: true,
+            locale: 'es'
+        }
+        const events = HebrewCalendar.calendar(options)
+
+        console.log(events)
+    }
 
     useIonViewWillEnter(() => {
         axios.get(`${process.env.REACT_APP_BackURL}/api/v1/myzmanimapi`)
@@ -693,6 +713,9 @@ function Cal() {
     }, [])
 
     useLayoutEffect(() => {
+getHebcal()
+
+
         dayjs.extend(utc)
         dayjs.extend(timezone)
 
